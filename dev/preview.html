@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>预览</title>
+<style>
+  html,body{margin:0;padding:0;background:#fff;overflow:hidden}
+  iframe{display:block;width:390px;height:844px;border:0}
+  body.wide iframe{width:412px;height:866px}
+</style>
+</head>
+<body>
+<iframe id="fr" src="../index.html#/home" scrolling="no"></iframe>
+<script>
+  var q = new URLSearchParams(location.search);
+  var r = q.get('r') || '/home';
+  var extra = [];
+  if (q.get('theme')) extra.push('theme=' + q.get('theme'));
+  if (q.get('font')) extra.push('font=' + q.get('font'));
+  var fr = document.getElementById('fr');
+  if (q.get('h')) fr.style.height = q.get('h') + 'px';
+  if (q.get('full')) fr.style.height = '2600px';
+  fr.src = '../index.html' + (extra.length ? '?' + extra.join('&') : '') + '#' + r;
+</script>
+</body>
+</html>

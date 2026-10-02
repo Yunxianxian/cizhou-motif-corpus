@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-font="1" data-motion="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="磁州窑数智化图案语料库 · 移动端网页原型：纹样检索、器物出处、相关语料与工艺图谱">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="纹样语料库">
+<meta name="mobile-web-app-capable" content="yes">
+<title>磁州窑数智化图案语料库</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<link rel="icon" href="assets/img/icon-192.png">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<div class="stage">
+  <div class="device" id="device">
+    <div class="device__btn device__btn--silent"></div>
+    <div class="device__btn device__btn--volup"></div>
+    <div class="device__btn device__btn--voldown"></div>
+    <div class="device__btn device__btn--power"></div>
+    <div class="screen" id="screen">
+      <div class="statusbar" aria-hidden="true">
+        <span class="statusbar__time">9:41</span>
+        <span class="statusbar__island"></span>
+        <span class="statusbar__right">
+          <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><rect x="0" y="7.5" width="3" height="4.5" rx="1"/><rect x="4.6" y="5.4" width="3" height="6.6" rx="1"/><rect x="9.2" y="3" width="3" height="9" rx="1"/><rect x="13.8" y="0.6" width="3" height="11.4" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M8 10.4 5.9 8.2a3 3 0 0 1 4.2 0zM8 5.6a6.4 6.4 0 0 0-4.5 1.9L1.9 5.9a8.6 8.6 0 0 1 12.2 0l-1.6 1.6A6.4 6.4 0 0 0 8 5.6z"/></svg>
+          <svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true"><rect x="0.6" y="0.9" width="21" height="10.2" rx="3" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2.4" y="2.7" width="16.4" height="6.6" rx="1.8"/><path d="M23.4 4.2v3.6a2 2 0 0 0 0-3.6z" fill-opacity=".4"/></svg>
+        </span>
+      </div>
+      <main class="app" id="app" role="main"></main>
+      <nav class="tabbar" id="tabbar" aria-label="主导航"></nav>
+      <div class="overlay-layer" id="overlayLayer"></div>
+      <div class="homebar" aria-hidden="true"></div>
+    </div>
+  </div>
+  <aside class="stage__note">
+    <p class="stage__kicker">移动端网页原型</p>
+    <h1>磁州窑<br>数智化图案语料库</h1>
+    <p class="stage__desc">按设计稿实现的一级 / 二级 / 三级界面，并补齐了首页与「我的」中隐含的次级页面。全部纹样与器物图为程序化生成的水墨矢量图，可直接替换为馆藏照片。</p>
+    <ul class="stage__list">
+      <li><b>一级</b><span>首页（轮播 · 装饰分类 · 工艺 · 展览）· 我的（快捷宫格 · 公告 · 常看）</span></li>
+      <li><b>二级</b><span>植物 / 人物装饰列表 · 传统烧制工艺 · 展览信息 · 关注 / 收藏 / 历史 / 上传 / 下载 / 更多</span></li>
+      <li><b>三级</b><span>纹样详情（出处 · 图版 · 相关语料 · 语料范本）· 工序详解 · 展览详情</span></li>
+      <li><b>交互</b><span>左右推入转场 · 屏幕左缘右滑返回 · 卡片共享元素转场 · 下拉刷新 · 长按快捷操作 · 主题与字号切换</span></li>
+    </ul>
+    <p class="stage__tip">在手机宽度下打开即为全屏 App 形态</p>
+  </aside>
+</div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/ornament.js"></script>
+<script src="assets/js/photos.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/view-common.js"></script>
+<script src="assets/js/view-home.js"></script>
+<script src="assets/js/view-list.js"></script>
+<script src="assets/js/view-detail.js"></script>
+<script src="assets/js/view-craft.js"></script>
+<script src="assets/js/view-profile.js"></script>
+<script src="assets/js/view-extra.js"></script>
+<script src="assets/js/router.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

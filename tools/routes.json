@@ -1,0 +1,33 @@
+{
+  "base": "http://127.0.0.1:5178/",
+  "outDir": "dev/shots",
+  "shots": [
+    { "name": "icon-512", "url": "dev/icon.html", "w": 512, "h": 512, "dsf": 1, "wait": 1500 },
+    { "name": "icon-192", "url": "dev/icon.html", "w": 192, "h": 192, "dsf": 1, "wait": 1500 },
+    { "name": "icon-180", "url": "dev/icon.html", "w": 180, "h": 180, "dsf": 1, "wait": 1500 },
+    { "name": "01-home", "url": "dev/preview.html?r=/home", "w": 390, "h": 844 },
+    { "name": "02-list-plant", "url": "dev/preview.html?r=/list/plant", "w": 390, "h": 844 },
+    { "name": "03-list-figure", "url": "dev/preview.html?r=/list/figure", "w": 390, "h": 844 },
+    { "name": "04-detail", "url": "dev/preview.html?r=/detail/plant-mudan-01", "w": 390, "h": 844 },
+    { "name": "05-profile", "url": "dev/preview.html?r=/profile", "w": 390, "h": 844 },
+    { "name": "06-craft", "url": "dev/preview.html?r=/craft", "w": 390, "h": 844 },
+    { "name": "07-craft-detail", "url": "dev/preview.html?r=/craft/wheel", "w": 390, "h": 844 },
+    { "name": "08-search", "url": "dev/preview.html?r=/search", "w": 390, "h": 844 },
+    { "name": "09-upload", "url": "dev/preview.html?r=/upload", "w": 390, "h": 844 },
+    { "name": "10-exhibitions", "url": "dev/preview.html?r=/exhibitions", "w": 390, "h": 844 },
+    { "name": "11-exhibition", "url": "dev/preview.html?r=/exhibition/e1", "w": 390, "h": 844 },
+    { "name": "12-favorites", "url": "dev/preview.html?r=/favorites", "w": 390, "h": 844 },
+    { "name": "13-follows", "url": "dev/preview.html?r=/follows", "w": 390, "h": 844 },
+    { "name": "14-history", "url": "dev/preview.html?r=/history", "w": 390, "h": 844 },
+    { "name": "15-uploads", "url": "dev/preview.html?r=/uploads", "w": 390, "h": 844 },
+    { "name": "16-downloads", "url": "dev/preview.html?r=/downloads", "w": 390, "h": 844 },
+    { "name": "17-theme", "url": "dev/preview.html?r=/theme", "w": 390, "h": 844 },
+    { "name": "18-more", "url": "dev/preview.html?r=/more", "w": 390, "h": 844 },
+    { "name": "19-about", "url": "dev/preview.html?r=/about", "w": 390, "h": 844 },
+    { "name": "20-dark-home", "url": "dev/preview.html?theme=dark&r=/home", "w": 390, "h": 844 },
+    { "name": "21-sepia-list", "url": "dev/preview.html?theme=sepia&r=/list/plant", "w": 390, "h": 844 },
+    { "name": "22-long-home", "url": "dev/preview.html?full=1&r=/home", "w": 390, "h": 2600 },
+    { "name": "23-long-detail", "url": "dev/preview.html?full=1&r=/detail/plant-mudan-01", "w": 390, "h": 2600 },
+    { "name": "90-desktop", "url": "#/home", "w": 1400, "h": 1000 }
+  ]
+}

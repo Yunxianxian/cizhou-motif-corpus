@@ -1,0 +1,13 @@
+{
+  "base": "file:///D:/作品集/1x/网页/",
+  "outDir": "dev/shots",
+  "shots": [
+    { "name": "g1-frame-home", "url": "dev/singleframe.html?r=/home", "w": 390, "h": 844 },
+    { "name": "g2-frame-list", "url": "dev/singleframe.html?r=/list/plant", "w": 390, "h": 844 },
+    { "name": "g3-frame-detail", "url": "dev/singleframe.html?r=/detail/plant-mudan-01", "w": 390, "h": 844 },
+    { "name": "g4-frame-profile", "url": "dev/singleframe.html?r=/profile", "w": 390, "h": 844 },
+    { "name": "g5-frame-upload", "url": "dev/singleframe.html?r=/upload", "w": 390, "h": 844 },
+    { "name": "g6-frame-dark", "url": "dev/singleframe.html?theme=dark&r=/list/figure", "w": 390, "h": 844 },
+    { "name": "g7-selftest", "url": "手机/_selftest.html#/list/plant", "w": 420, "h": 900, "dsf": 1, "wait": 10000 }
+  ]
+}

@@ -1,0 +1,174 @@
+/* ==========================================================================
+   tokens.css —— 设计变量 / 三套主题 / 基础排版
+   ========================================================================== */
+:root {
+  /* 字体 */
+  --font-sans: "PingFang SC", "HarmonyOS Sans SC", "Source Han Sans SC", "Microsoft YaHei",
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  --font-kai: "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", var(--font-serif);
+
+  /* 字号（受「正文字号」设置影响） */
+  --fs: 1;
+  --t-xs: calc(10.5px * var(--fs));
+  --t-sm: calc(12.5px * var(--fs));
+  --t-md: calc(14px * var(--fs));
+  --t-lg: calc(16px * var(--fs));
+  --t-xl: calc(19px * var(--fs));
+  --t-2xl: calc(23px * var(--fs));
+  --t-3xl: calc(28px * var(--fs));
+
+  /* 圆角 */
+  --r-xs: 9px;
+  --r-sm: 13px;
+  --r-md: 17px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --r-2xl: 34px;
+  --r-pill: 999px;
+
+  /* 动效 */
+  --e-out: cubic-bezier(.32, .72, 0, 1);
+  --e-spring: cubic-bezier(.34, 1.36, .5, 1);
+  --d-1: .18s;
+  --d-2: .32s;
+  --d-3: .48s;
+
+  /* 尺寸 */
+  --pad: 18px;
+  --tabbar-h: 78px;
+  --dev-w: 390px;
+  --dev-h: 844px;
+  --k: 1;
+}
+
+/* ------------------------------- 浅色（默认） ------------------------------- */
+html[data-theme="light"] {
+  --paper: #ffffff;
+  --paper-2: #f7f6f4;
+  --paper-3: #efedea;
+  --card: #f6f5f2;
+  --ink: #141414;
+  --ink-2: #3c3a37;
+  --muted: #8d8a85;
+  --muted-2: #b6b2ac;
+  --line: rgba(20, 20, 20, .085);
+  --line-2: rgba(20, 20, 20, .05);
+  --art-gap: #f6f5f2;
+  --glass: rgba(255, 255, 255, .74);
+  --glass-line: rgba(20, 20, 20, .06);
+  --ink-glass: rgba(255, 255, 255, .22);
+  --sh-1: 0 1px 2px rgba(24, 20, 16, .05), 0 6px 16px rgba(24, 20, 16, .055);
+  --sh-2: 0 10px 30px rgba(24, 20, 16, .12);
+  --sh-3: 0 24px 66px rgba(0, 0, 0, .3);
+  --scrim: rgba(20, 18, 16, .42);
+  color-scheme: light;
+}
+
+/* --------------------------------- 深色 --------------------------------- */
+html[data-theme="dark"] {
+  --paper: #111113;
+  --paper-2: #1a1a1d;
+  --paper-3: #232327;
+  --card: #1c1c20;
+  --ink: #f1efec;
+  --ink-2: #d3cfc8;
+  --muted: #8c8880;
+  --muted-2: #65615c;
+  --line: rgba(255, 255, 255, .1);
+  --line-2: rgba(255, 255, 255, .06);
+  --art-gap: #1c1c20;
+  --glass: rgba(28, 28, 32, .72);
+  --glass-line: rgba(255, 255, 255, .08);
+  --ink-glass: rgba(255, 255, 255, .16);
+  --sh-1: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 16px rgba(0, 0, 0, .32);
+  --sh-2: 0 10px 30px rgba(0, 0, 0, .5);
+  --sh-3: 0 24px 66px rgba(0, 0, 0, .6);
+  --scrim: rgba(0, 0, 0, .58);
+  color-scheme: dark;
+}
+
+/* --------------------------------- 宣纸 --------------------------------- */
+html[data-theme="sepia"] {
+  --paper: #f7f1e5;
+  --paper-2: #efe7d7;
+  --paper-3: #e7ddc9;
+  --card: #efe7d7;
+  --ink: #2a2318;
+  --ink-2: #4a4033;
+  --muted: #8d8069;
+  --muted-2: #b3a68d;
+  --line: rgba(64, 48, 24, .12);
+  --line-2: rgba(64, 48, 24, .07);
+  --art-gap: #efe7d7;
+  --glass: rgba(247, 241, 229, .78);
+  --glass-line: rgba(64, 48, 24, .1);
+  --ink-glass: rgba(255, 255, 255, .3);
+  --sh-1: 0 1px 2px rgba(74, 56, 28, .06), 0 6px 16px rgba(74, 56, 28, .07);
+  --sh-2: 0 10px 30px rgba(74, 56, 28, .14);
+  --sh-3: 0 24px 66px rgba(50, 36, 16, .34);
+  --scrim: rgba(46, 36, 20, .44);
+  color-scheme: light;
+}
+
+html[data-font="1.08"] { --fs: 1.08; }
+html[data-font="1.16"] { --fs: 1.16; }
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: #e6e3de;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body { overflow: hidden; }
+
+@media (max-width: 619px) {
+  html, body { background: var(--paper); }
+}
+
+h1, h2, h3, h4, p, dl, dd, dt, ul, li, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+textarea { resize: none; cursor: text; }
+input, textarea { cursor: text; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+b, strong { font-weight: 600; }
+i, em { font-style: normal; }
+svg { display: block; }
+
+/* 焦点样式：去掉默认描边，改用细描边（仅键盘可见） */
+:focus { outline: none; }
+:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
+input:focus-visible, textarea:focus-visible { outline: none; }
+
+/* 动效开关：减弱动效时几乎取消所有过渡 */
+html[data-motion="off"] * {
+  transition-duration: .001ms !important;
+  animation-duration: .001ms !important;
+  animation-iteration-count: 1 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: .001ms !important;
+    animation-duration: .001ms !important;
+  }
+}
+
+.ic { display: block; flex: none; }

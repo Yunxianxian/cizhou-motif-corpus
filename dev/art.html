@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>素材自检</title>
+<style>
+  body{margin:0;background:#fff;color:#141414;font:13px/1.5 "PingFang SC","Microsoft YaHei",sans-serif}
+  h2{font-size:14px;margin:18px 12px 8px;color:#666}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:0 12px}
+  .cell{background:#f7f6f4;border-radius:14px;overflow:hidden}
+  .cell .art{display:block;width:100%;height:auto}
+  .cell b{display:block;font-weight:400;font-size:11px;color:#888;padding:4px 6px 6px}
+  .scenes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:0 12px}
+  .scenes .cell .art{height:170px}
+  .heroes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 12px}
+  .heroes .cell .art{height:260px}
+</style>
+</head>
+<body>
+<script src="../assets/js/ornament.js"></script>
+<script>
+  const CZ = window.CZ;
+  const groups = [
+    ['peony','single','牡丹·单独'],['peony','broken','牡丹·折枝'],['peony','cluster','牡丹·簇'],
+    ['peony','band','牡丹·连续'],['peony','medallion','牡丹·适合'],['peony','scatter','散点'],
+    ['scroll','single','卷草'],['scroll','band','卷草·连续'],['scroll','wrap','缠枝'],
+    ['lotus','single','莲'],['lotus','medallion','莲·适合'],['lotus','band','莲·连续'],
+    ['chrys','single','菊'],['chrys','cluster','菊·簇'],['chrys','medallion','菊·适合'],
+    ['child','single','婴戏'],['child','pair','婴戏·双'],['child','medallion','婴戏·适合'],
+    ['story','single','人物故事'],['story','pair','故事·双'],['immortal','single','神仙'],
+    ['peony','single','线稿'],['lotus','single','线稿'],['child','single','线稿']
+  ];
+  let html = '';
+  groups.forEach((g,i)=>{
+    const line = i>=21;
+    html += '<div class="cell">'+CZ.Art.motif({seed:'k'+i,motif:g[0],comp:g[1],line})+'<b>'+g[2]+'</b></div>';
+  });
+  document.write('<h2>纹样（前21为实心，后3为线稿）</h2><div class="grid">'+html+'</div>');
+
+  const kinds = ['kiln','workshop','wheel','saggars','shards','glaze','clay','museum','fuel'];
+  let sh = '';
+  kinds.forEach((k,i)=>{ sh += '<div class="cell">'+CZ.Art.craft(k,i)+'<b>'+k+'</b></div>'; });
+  document.write('<h2>场景插画</h2><div class="scenes">'+sh+'</div>');
+
+  let hh = '';
+  ['a','kiln','museum','shards'].forEach((v,i)=>{ hh += '<div class="cell">'+CZ.Art.hero(i,v)+'<b>hero '+v+'</b></div>'; });
+  hh += '<div class="cell">'+CZ.Art.headTexture('p')+'<b>head</b></div>';
+  document.write('<h2>大图</h2><div class="heroes">'+hh+'</div>');
+</script>
+</body>
+</html>

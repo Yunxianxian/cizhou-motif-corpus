@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>single frame</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
+  iframe { display: block; width: 390px; height: 844px; border: 0; }
+</style>
+</head>
+<body>
+<iframe id="fr" src="../手机/磁州窑纹样语料库.html#/home" scrolling="no"></iframe>
+<script>
+  var q = new URLSearchParams(location.search);
+  var r = q.get('r') || '/home';
+  var extra = [];
+  if (q.get('theme')) extra.push('theme=' + q.get('theme'));
+  document.getElementById('fr').src =
+    '../手机/磁州窑纹样语料库.html' + (extra.length ? '?' + extra.join('&') : '') + '#' + r;
+</script>
+</body>
+</html>
