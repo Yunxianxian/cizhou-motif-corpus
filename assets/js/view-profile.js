@@ -85,7 +85,7 @@
         title: '语料库公告',
         desc: CZ.DATA.app.notice,
         items: [
-          { icon: 'book', label: '查看更新日志', desc: 'v1.0.0 · 首批开放 1,286 件', onTap: () => CZ.router.go('#/about') },
+          { icon: 'book', label: '查看更新日志', desc: 'v1.1.0 · 液态玻璃界面升级', onTap: () => CZ.router.go('#/about') },
           { icon: 'calendar', label: '预约上线提醒', desc: '上线当日通知我', onTap: () => CZ.ui.toast('已预约上线提醒', { icon: 'check' }) }
         ]
       });

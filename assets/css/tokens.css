@@ -30,6 +30,7 @@
   /* 动效 */
   --e-out: cubic-bezier(.32, .72, 0, 1);
   --e-spring: cubic-bezier(.34, 1.36, .5, 1);
+  --e-liquid: cubic-bezier(.3, 1.55, .42, 1);
   --d-1: .18s;
   --d-2: .32s;
   --d-3: .48s;
@@ -63,6 +64,21 @@ html[data-theme="light"] {
   --sh-3: 0 24px 66px rgba(0, 0, 0, .3);
   --scrim: rgba(20, 18, 16, .42);
   color-scheme: light;
+
+  /* 液态玻璃：窑火暖调环境光 + 瓷釉玻璃 */
+  --page-bg:
+    radial-gradient(120% 85% at 88% -8%, rgba(228, 168, 104, .2) 0%, transparent 56%),
+    radial-gradient(105% 80% at -14% 32%, rgba(148, 176, 160, .15) 0%, transparent 60%),
+    radial-gradient(115% 90% at 58% 114%, rgba(196, 142, 102, .15) 0%, transparent 56%),
+    linear-gradient(180deg, #f7f4ee 0%, #f1ede6 100%);
+  --g-bg: rgba(255, 255, 255, .46);
+  --g-bg-2: rgba(255, 255, 255, .64);
+  --g-hi: rgba(255, 255, 255, .85);
+  --g-brd: rgba(255, 255, 255, .62);
+  --g-sheen: rgba(255, 255, 255, .55);
+  --g-shadow: 0 12px 32px rgba(96, 72, 48, .1), 0 2px 8px rgba(96, 72, 48, .06);
+  --g-blur: blur(22px) saturate(1.7);
+  --g-blur-2: blur(30px) saturate(1.9);
 }
 
 /* --------------------------------- 深色 --------------------------------- */
@@ -86,6 +102,21 @@ html[data-theme="dark"] {
   --sh-3: 0 24px 66px rgba(0, 0, 0, .6);
   --scrim: rgba(0, 0, 0, .58);
   color-scheme: dark;
+
+  /* 液态玻璃：窑夜炉火环境光 + 墨玉玻璃 */
+  --page-bg:
+    radial-gradient(120% 85% at 84% -8%, rgba(255, 142, 66, .13) 0%, transparent 56%),
+    radial-gradient(105% 80% at -12% 34%, rgba(108, 152, 140, .11) 0%, transparent 60%),
+    radial-gradient(115% 90% at 56% 114%, rgba(206, 110, 66, .11) 0%, transparent 56%),
+    linear-gradient(180deg, #141416 0%, #0e0e10 100%);
+  --g-bg: rgba(38, 38, 44, .42);
+  --g-bg-2: rgba(44, 44, 50, .58);
+  --g-hi: rgba(255, 255, 255, .18);
+  --g-brd: rgba(255, 255, 255, .13);
+  --g-sheen: rgba(255, 255, 255, .16);
+  --g-shadow: 0 14px 34px rgba(0, 0, 0, .44), 0 2px 8px rgba(0, 0, 0, .3);
+  --g-blur: blur(22px) saturate(1.6);
+  --g-blur-2: blur(30px) saturate(1.8);
 }
 
 /* --------------------------------- 宣纸 --------------------------------- */
@@ -109,6 +140,21 @@ html[data-theme="sepia"] {
   --sh-3: 0 24px 66px rgba(50, 36, 16, .34);
   --scrim: rgba(46, 36, 20, .44);
   color-scheme: light;
+
+  /* 液态玻璃：宣纸茶色环境光 + 米汤玻璃 */
+  --page-bg:
+    radial-gradient(120% 85% at 86% -8%, rgba(216, 162, 92, .22) 0%, transparent 56%),
+    radial-gradient(105% 80% at -12% 32%, rgba(172, 152, 110, .16) 0%, transparent 60%),
+    radial-gradient(115% 90% at 58% 113%, rgba(198, 148, 90, .17) 0%, transparent 56%),
+    linear-gradient(180deg, #f8f1e2 0%, #f1e8d4 100%);
+  --g-bg: rgba(253, 248, 237, .46);
+  --g-bg-2: rgba(253, 248, 237, .64);
+  --g-hi: rgba(255, 255, 255, .8);
+  --g-brd: rgba(255, 255, 255, .58);
+  --g-sheen: rgba(255, 255, 255, .5);
+  --g-shadow: 0 12px 32px rgba(96, 70, 36, .11), 0 2px 8px rgba(96, 70, 36, .06);
+  --g-blur: blur(22px) saturate(1.6);
+  --g-blur-2: blur(30px) saturate(1.8);
 }
 
 html[data-font="1.08"] { --fs: 1.08; }

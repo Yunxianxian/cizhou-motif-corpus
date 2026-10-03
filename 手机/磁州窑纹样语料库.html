@@ -47,6 +47,7 @@
   /* 动效 */
   --e-out: cubic-bezier(.32, .72, 0, 1);
   --e-spring: cubic-bezier(.34, 1.36, .5, 1);
+  --e-liquid: cubic-bezier(.3, 1.55, .42, 1);
   --d-1: .18s;
   --d-2: .32s;
   --d-3: .48s;
@@ -80,6 +81,21 @@ html[data-theme="light"] {
   --sh-3: 0 24px 66px rgba(0, 0, 0, .3);
   --scrim: rgba(20, 18, 16, .42);
   color-scheme: light;
+
+  /* 液态玻璃：窑火暖调环境光 + 瓷釉玻璃 */
+  --page-bg:
+    radial-gradient(120% 85% at 88% -8%, rgba(228, 168, 104, .2) 0%, transparent 56%),
+    radial-gradient(105% 80% at -14% 32%, rgba(148, 176, 160, .15) 0%, transparent 60%),
+    radial-gradient(115% 90% at 58% 114%, rgba(196, 142, 102, .15) 0%, transparent 56%),
+    linear-gradient(180deg, #f7f4ee 0%, #f1ede6 100%);
+  --g-bg: rgba(255, 255, 255, .46);
+  --g-bg-2: rgba(255, 255, 255, .64);
+  --g-hi: rgba(255, 255, 255, .85);
+  --g-brd: rgba(255, 255, 255, .62);
+  --g-sheen: rgba(255, 255, 255, .55);
+  --g-shadow: 0 12px 32px rgba(96, 72, 48, .1), 0 2px 8px rgba(96, 72, 48, .06);
+  --g-blur: blur(22px) saturate(1.7);
+  --g-blur-2: blur(30px) saturate(1.9);
 }
 
 /* --------------------------------- 深色 --------------------------------- */
@@ -103,6 +119,21 @@ html[data-theme="dark"] {
   --sh-3: 0 24px 66px rgba(0, 0, 0, .6);
   --scrim: rgba(0, 0, 0, .58);
   color-scheme: dark;
+
+  /* 液态玻璃：窑夜炉火环境光 + 墨玉玻璃 */
+  --page-bg:
+    radial-gradient(120% 85% at 84% -8%, rgba(255, 142, 66, .13) 0%, transparent 56%),
+    radial-gradient(105% 80% at -12% 34%, rgba(108, 152, 140, .11) 0%, transparent 60%),
+    radial-gradient(115% 90% at 56% 114%, rgba(206, 110, 66, .11) 0%, transparent 56%),
+    linear-gradient(180deg, #141416 0%, #0e0e10 100%);
+  --g-bg: rgba(38, 38, 44, .42);
+  --g-bg-2: rgba(44, 44, 50, .58);
+  --g-hi: rgba(255, 255, 255, .18);
+  --g-brd: rgba(255, 255, 255, .13);
+  --g-sheen: rgba(255, 255, 255, .16);
+  --g-shadow: 0 14px 34px rgba(0, 0, 0, .44), 0 2px 8px rgba(0, 0, 0, .3);
+  --g-blur: blur(22px) saturate(1.6);
+  --g-blur-2: blur(30px) saturate(1.8);
 }
 
 /* --------------------------------- 宣纸 --------------------------------- */
@@ -126,6 +157,21 @@ html[data-theme="sepia"] {
   --sh-3: 0 24px 66px rgba(50, 36, 16, .34);
   --scrim: rgba(46, 36, 20, .44);
   color-scheme: light;
+
+  /* 液态玻璃：宣纸茶色环境光 + 米汤玻璃 */
+  --page-bg:
+    radial-gradient(120% 85% at 86% -8%, rgba(216, 162, 92, .22) 0%, transparent 56%),
+    radial-gradient(105% 80% at -12% 32%, rgba(172, 152, 110, .16) 0%, transparent 60%),
+    radial-gradient(115% 90% at 58% 113%, rgba(198, 148, 90, .17) 0%, transparent 56%),
+    linear-gradient(180deg, #f8f1e2 0%, #f1e8d4 100%);
+  --g-bg: rgba(253, 248, 237, .46);
+  --g-bg-2: rgba(253, 248, 237, .64);
+  --g-hi: rgba(255, 255, 255, .8);
+  --g-brd: rgba(255, 255, 255, .58);
+  --g-sheen: rgba(255, 255, 255, .5);
+  --g-shadow: 0 12px 32px rgba(96, 70, 36, .11), 0 2px 8px rgba(96, 70, 36, .06);
+  --g-blur: blur(22px) saturate(1.6);
+  --g-blur-2: blur(30px) saturate(1.8);
 }
 
 html[data-font="1.08"] { --fs: 1.08; }
@@ -1054,6 +1100,7 @@ html[data-hero="1"] .statusbar { color: #fff; }
   .stage::after { display: none; }
   .device {
     width: 100vw;
+    height: 100vh;
     height: 100dvh;
     padding: 0;
     border-radius: 0;
@@ -2121,6 +2168,384 @@ img.art--scene, img.art--hero { object-fit: cover; }
 .taginput input { flex: 1; min-width: 96px; padding: 6px 0; background: none; }
 .upblock .btn--block { width: calc(100% - 36px); margin: 22px 18px 0; }
 .upnote { margin: 11px 18px 0; font-size: var(--t-xs); color: var(--muted-2); text-align: center; }
+
+</style>
+<style>
+/* ===== assets/css/glass.css ===== */
+/* ==========================================================================
+   glass.css —— 液态玻璃增强层（在 tokens / base / pages 之后加载）
+   瓷釉般通透的界面：环境光渐变底 + 半透明玻璃面板 + 镜面高光 + 指针追光
+   ========================================================================== */
+
+/* ------------------------------ 页面环境光底 ------------------------------ */
+.page {
+  background: var(--page-bg);
+  background-attachment: local, local, local, local;
+}
+
+/* 首页 / 我的 的圆角内容板：延续环境光，与 hero 图柔和衔接 */
+.homesheet,
+.profilesheet {
+  background: var(--page-bg);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, .35), 0 -18px 38px rgba(20, 16, 12, .1);
+}
+html[data-theme="dark"] .homesheet,
+html[data-theme="dark"] .profilesheet {
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, .07), 0 -18px 38px rgba(0, 0, 0, .4);
+}
+
+/* ------------------------------- 玻璃配方 ------------------------------- */
+/* 厚玻璃（主要面板）：半透明 + 景深模糊 + 顶部镜面高光 + 折射描边 */
+.pcard,
+.datacard,
+.watchcard,
+.minecard,
+.acc,
+.cblock,
+.notice,
+.uphead,
+.storage,
+.chero,
+.dhead__main,
+.dcard,
+.catcard__media,
+.browsecard__media,
+.abouthero__mark,
+.pagebox .lrows,
+.dquote {
+  background: var(--g-bg);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), var(--g-shadow);
+}
+
+/* 薄玻璃（小型控件）：通透但不叠加模糊，保证性能 */
+.quicklink,
+.stepnav__it,
+.uprow,
+.dlrow,
+.chip,
+.tag,
+.morebtn,
+.btn--ghost,
+.lrow__ic,
+.dlrow__ic,
+.notice__ic,
+.dropzone__ic,
+.siterow__pin,
+.minecell,
+.thumb__art,
+.sibcard__art,
+.watch__art,
+.prow__media,
+.lrow__art,
+.hrow__art,
+.sample span,
+.pick__art,
+.sheet__ic,
+.sheet__cancel,
+.field input,
+.field textarea,
+.taginput,
+.dropzone,
+.seg,
+.iconbtn,
+.upstep span,
+.dhead__badge,
+.stepcard__no,
+.status--soon,
+.switch {
+  background: var(--g-bg);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 14px rgba(60, 45, 30, .05);
+}
+
+html[data-theme="dark"] .quicklink,
+html[data-theme="dark"] .stepnav__it,
+html[data-theme="dark"] .uprow,
+html[data-theme="dark"] .dlrow,
+html[data-theme="dark"] .chip,
+html[data-theme="dark"] .tag,
+html[data-theme="dark"] .morebtn,
+html[data-theme="dark"] .btn--ghost,
+html[data-theme="dark"] .lrow__ic,
+html[data-theme="dark"] .dlrow__ic,
+html[data-theme="dark"] .notice__ic,
+html[data-theme="dark"] .dropzone__ic,
+html[data-theme="dark"] .siterow__pin,
+html[data-theme="dark"] .minecell,
+html[data-theme="dark"] .thumb__art,
+html[data-theme="dark"] .sibcard__art,
+html[data-theme="dark"] .watch__art,
+html[data-theme="dark"] .prow__media,
+html[data-theme="dark"] .lrow__art,
+html[data-theme="dark"] .hrow__art,
+html[data-theme="dark"] .sample span,
+html[data-theme="dark"] .pick__art,
+html[data-theme="dark"] .sheet__ic,
+html[data-theme="dark"] .sheet__cancel,
+html[data-theme="dark"] .field input,
+html[data-theme="dark"] .field textarea,
+html[data-theme="dark"] .taginput,
+html[data-theme="dark"] .dropzone,
+html[data-theme="dark"] .seg,
+html[data-theme="dark"] .iconbtn,
+html[data-theme="dark"] .upstep span,
+html[data-theme="dark"] .dhead__badge,
+html[data-theme="dark"] .stepcard__no,
+html[data-theme="dark"] .status--soon,
+html[data-theme="dark"] .switch {
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 14px rgba(0, 0, 0, .28);
+}
+
+/* 行内列表行：悬浮在玻璃底板上的层次 */
+.pagebox .lrows .lrow { background: transparent; border-bottom-color: var(--line-2); }
+.pagebox .lrows .lrow.is-press { background: rgba(255, 255, 255, .28); }
+html[data-theme="dark"] .pagebox .lrows .lrow.is-press { background: rgba(255, 255, 255, .06); }
+
+.prow.is-press, .hrow.is-press, .lrow.is-press, .exhrow-card.is-press { background: rgba(255, 255, 255, .3); }
+html[data-theme="dark"] .prow.is-press,
+html[data-theme="dark"] .hrow.is-press,
+html[data-theme="dark"] .lrow.is-press,
+html[data-theme="dark"] .exhrow-card.is-press { background: rgba(255, 255, 255, .05); }
+
+.qgrid__item.is-press { background: rgba(255, 255, 255, .34); }
+html[data-theme="dark"] .qgrid__item.is-press { background: rgba(255, 255, 255, .06); }
+.acc__hd.is-press, .notice.is-press { background: rgba(255, 255, 255, .3); }
+html[data-theme="dark"] .acc__hd.is-press,
+html[data-theme="dark"] .notice.is-press { background: rgba(255, 255, 255, .05); }
+
+/* 照片 / 场景类媒体：折射描边 + 柔和投影，图像本身铺满 */
+.craft-cell,
+.exhcard__media,
+.exhrow-card__media,
+.stepcard__media,
+.uprow__art {
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), var(--g-shadow);
+}
+
+/* -------------------------------- 导航玻璃 -------------------------------- */
+.navbar.is-stuck,
+.chipsbar.is-stuck,
+.searchbar,
+.hometop.is-stuck .hometop__bg {
+  background: var(--g-bg-2);
+  backdrop-filter: var(--g-blur);
+  -webkit-backdrop-filter: var(--g-blur);
+}
+.navbar.is-stuck { box-shadow: inset 0 -1px 0 var(--line), inset 0 1px 0 var(--g-hi); }
+
+.searchbar__field {
+  background: var(--g-bg);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), inset 0 2px 6px rgba(60, 45, 30, .05);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+}
+
+/* 圆形工具按钮：镜头玻璃 */
+.glass-btn {
+  background: var(--g-bg-2);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 16px rgba(60, 45, 30, .1);
+  backdrop-filter: blur(16px) saturate(1.7);
+  -webkit-backdrop-filter: blur(16px) saturate(1.7);
+}
+html[data-theme="dark"] .glass-btn { box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 16px rgba(0, 0, 0, .4); }
+
+/* ------------------------------ 底部导航胶囊 ------------------------------ */
+.tabbar {
+  background: linear-gradient(180deg, var(--g-bg-2) 0%, var(--g-bg) 100%);
+  border: 1px solid var(--g-brd);
+  box-shadow:
+    inset 0 1.5px 0 var(--g-hi),
+    inset 0 -1px 0 rgba(0, 0, 0, .04),
+    0 18px 44px rgba(50, 38, 26, .16),
+    0 3px 10px rgba(50, 38, 26, .08);
+  backdrop-filter: var(--g-blur-2);
+  -webkit-backdrop-filter: var(--g-blur-2);
+}
+html[data-theme="dark"] .tabbar {
+  box-shadow:
+    inset 0 1.5px 0 var(--g-hi),
+    0 18px 44px rgba(0, 0, 0, .5),
+    0 3px 10px rgba(0, 0, 0, .35);
+}
+
+/* 选中胶囊：液态玻璃浮珠 */
+.tabbar__pill {
+  background: linear-gradient(180deg, var(--g-hi) 0%, var(--g-bg) 90%);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 14px rgba(50, 38, 26, .12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+html[data-theme="dark"] .tabbar__pill { box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 14px rgba(0, 0, 0, .4); }
+
+.tab { transition: color var(--d-2) var(--e-out); }
+.tab.is-on .tab__ic { transform: translateY(-1.5px) scale(1.08); transition-timing-function: var(--e-liquid); }
+
+/* --------------------------------- 按钮 --------------------------------- */
+.btn--ink {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(0, 0, 0, .18), var(--sh-1);
+}
+.btn--ink.is-press { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 2px 6px rgba(20, 16, 12, .12); }
+
+.chip.is-on,
+.tag--on {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 4px 12px rgba(20, 16, 12, .14);
+}
+
+.seg { padding: 3px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.seg__it.is-on {
+  background: var(--g-bg-2);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 3px 10px rgba(60, 45, 30, .1);
+}
+
+.switch.is-on { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), inset 0 2px 6px rgba(0, 0, 0, .22); border-color: transparent; }
+
+/* --------------------------------- 浮层 --------------------------------- */
+.sheet {
+  background: var(--g-bg-2);
+  backdrop-filter: var(--g-blur-2);
+  -webkit-backdrop-filter: var(--g-blur-2);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1.5px 0 var(--g-hi), var(--sh-3);
+}
+.dialog {
+  background: var(--g-bg-2);
+  backdrop-filter: var(--g-blur-2);
+  -webkit-backdrop-filter: var(--g-blur-2);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1.5px 0 var(--g-hi), var(--sh-3);
+}
+.toast {
+  background: rgba(26, 24, 22, .8);
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), var(--sh-2);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+.sheet-backdrop { backdrop-filter: blur(6px) saturate(1.2); -webkit-backdrop-filter: blur(6px) saturate(1.2); }
+
+/* 详情收藏浮标：水滴玻璃 */
+.dfab {
+  background: var(--g-bg-2);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1.5px 0 var(--g-hi), 0 10px 24px rgba(50, 38, 26, .16);
+  backdrop-filter: blur(18px) saturate(1.7);
+  -webkit-backdrop-filter: blur(18px) saturate(1.7);
+}
+.dfab.is-on { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 10px 24px rgba(20, 16, 12, .3); }
+
+/* ------------------------------ 指针追光镀层 ------------------------------ */
+/* 仅为「静态定位」的元素补相对定位；绝对/粘性定位的元素（tabbar/dfab/sheet/dialog）
+   本身即可作为 ::before 的定位上下文，切勿覆盖其 position */
+.pcard, .catcard__media, .datacard, .quicklink, .glass-btn, .chip, .tag,
+.btn, .thumb__art, .sibcard__art, .notice, .themecard,
+.dropzone, .searchbar__field, .minecell, .uprow, .dlrow,
+.stepnav__it, .browsecard__media, .watch__art, .craft-cell, .exhcard__media,
+.dhead__main, .dcard, .uphead, .storage, .chero, .cblock, .watchcard,
+.minecard, .dquote, .morebtn, .seg, .iconbtn {
+  position: relative;
+}
+.pcard::before, .catcard__media::before, .datacard::before, .quicklink::before,
+.glass-btn::before, .chip::before, .tag::before, .tabbar::before, .dfab::before,
+.btn::before, .thumb__art::before, .sibcard__art::before, .notice::before,
+.themecard::before, .dropzone::before, .searchbar__field::before,
+.minecell::before, .uprow::before, .dlrow::before, .stepnav__it::before,
+.browsecard__media::before, .watch__art::before, .craft-cell::before,
+.exhcard__media::before, .dhead__main::before, .dcard::before, .uphead::before,
+.storage::before, .chero::before, .cblock::before, .watchcard::before,
+.minecard::before, .dquote::before, .morebtn::before, .iconbtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(150px circle at var(--mx, 50%) var(--my, -60%), var(--g-sheen), transparent 72%);
+  opacity: 0;
+  transition: opacity .38s var(--e-out);
+  pointer-events: none;
+  z-index: 1;
+}
+.is-glow::before { opacity: 1; }
+/* 保证内容压在追光层之下不受影响（追光层仅作釉面光泽） */
+.tabbar__in, .seg__it, .sheet > *, .dialog > * { position: relative; z-index: 2; }
+.tabbar__pill { z-index: 1; }
+.tab { z-index: 2; }
+
+/* ------------------------------ 动效细节升级 ------------------------------ */
+/* 悬停浮起（桌面鼠标） */
+@media (hover: hover) {
+  .pcard:hover { transform: translateY(-3px); box-shadow: inset 0 1px 0 var(--g-hi), 0 18px 40px rgba(80, 60, 40, .14); }
+  .quicklink:hover, .stepnav__it:hover, .minecell:hover { transform: translateY(-2px); }
+  .catcard__media:hover .art,
+  .sibcard__art:hover .art,
+  .watch__art:hover .art,
+  .browsecard__media:hover .art { transform: scale(1.05); }
+  .glass-btn:hover { box-shadow: inset 0 1px 0 var(--g-hi), 0 10px 22px rgba(60, 45, 30, .14); }
+}
+.pcard, .quicklink, .stepnav__it, .minecell {
+  transition: transform var(--d-2) var(--e-out), box-shadow var(--d-2) var(--e-out), background var(--d-1);
+}
+.catcard__media .art, .sibcard__art .art, .watch__art .art,
+.browsecard__media .art, .pcard__media .art {
+  transition: transform .6s var(--e-out);
+}
+.pcard.is-press { box-shadow: inset 0 1px 0 var(--g-hi); }
+
+/* 主题卡片选中态：墨色描边 + 玻璃光晕 */
+.themecard.is-on {
+  border-color: var(--ink);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 0 0 3px color-mix(in srgb, var(--ink) 12%, transparent), var(--g-shadow);
+}
+
+/* 输入框聚焦：墨色玻璃环 */
+.field input:focus, .field textarea:focus {
+  box-shadow: inset 0 1px 0 var(--g-hi), inset 0 0 0 1.5px var(--ink), 0 0 0 4px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+/* 首页 hero 圆点：点亮时带微光 */
+.hero__dot.is-on { box-shadow: 0 0 8px rgba(255, 255, 255, .8); }
+
+/* 展览状态徽章 / 图版徽章的玻璃质感 */
+.dhead__badge, .stepcard__no {
+  backdrop-filter: blur(10px) saturate(1.5);
+  -webkit-backdrop-filter: blur(10px) saturate(1.5);
+}
+
+/* 头像与好友胶囊：更强的镜头感 */
+.pavatar {
+  background: rgba(255, 255, 255, .22);
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .5), 0 8px 20px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+}
+.puser__friends {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+/* 章节标题字距呼吸感 */
+.sec-head__tx h2 { letter-spacing: .05em; }
+
+/* 桌面展示舞台：陶瓷暖调氛围 */
+.stage {
+  background:
+    radial-gradient(1100px 640px at 16% -8%, rgba(238, 200, 150, .35) 0%, transparent 60%),
+    radial-gradient(900px 700px at 96% 100%, rgba(180, 168, 150, .4) 0%, transparent 62%),
+    radial-gradient(700px 500px at 60% 40%, rgba(214, 196, 172, .25) 0%, transparent 70%),
+    #e9e5de;
+}
+
+/* 降低动态效果时：关闭追光淡入过渡 */
+@media (prefers-reduced-motion: reduce) {
+  .is-glow::before { transition: none; }
+}
 
 </style>
 </head>
@@ -3333,7 +3758,7 @@ img.art--scene, img.art--hero { object-fit: cover; }
   D.app = {
     name: '磁州窑数智化图案语料库',
     museum: '中国磁州窑遗址博物馆',
-    version: 'v1.0.0 · 内测版',
+    version: 'v1.1.0 · 内测版',
     slogan: '黑与白的艺术',
     notice: '磁州窑数智化图案语料库 APP 即将上线，首批开放 1,286 件纹样高清数据与注释语料',
     stats: [
@@ -5412,7 +5837,7 @@ img.art--scene, img.art--hero { object-fit: cover; }
         title: '语料库公告',
         desc: CZ.DATA.app.notice,
         items: [
-          { icon: 'book', label: '查看更新日志', desc: 'v1.0.0 · 首批开放 1,286 件', onTap: () => CZ.router.go('#/about') },
+          { icon: 'book', label: '查看更新日志', desc: 'v1.1.0 · 液态玻璃界面升级', onTap: () => CZ.router.go('#/about') },
           { icon: 'calendar', label: '预约上线提醒', desc: '上线当日通知我', onTap: () => CZ.ui.toast('已预约上线提醒', { icon: 'check' }) }
         ]
       });
@@ -6022,6 +6447,7 @@ img.art--scene, img.art--hero { object-fit: cover; }
   CZ.views.about = function () {
     const D = CZ.DATA;
     const logs = [
+      { v: 'v1.1.0', d: '2025.06', t: '界面升级为液态玻璃质感：环境光渐变底、玻璃面板与指针追光' },
       { v: 'v1.0.0', d: '2025.03', t: '首批开放 1,286 件纹样、342 条历史语料与 8 道工艺图谱' },
       { v: 'v0.9.2', d: '2025.02', t: '新增线稿下载与连续纹样范本视图' },
       { v: 'v0.8.0', d: '2025.01', t: '纹样详情加入相关语料与语料范本双栏' }
@@ -6558,6 +6984,85 @@ img.art--scene, img.art--hero { object-fit: cover; }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
+})();
+
+</script>
+<script>
+/* ===== assets/js/glass.js ===== */
+/* ==========================================================================
+   glass.js —— 液态玻璃「指针追光」
+   指针（鼠标 / 触摸）掠过玻璃元素时，把光斑位置写入 --mx / --my，
+   由 glass.css 的 ::before 镀层渲染镜面高光。事件委托 + rAF 节流，
+   兼容视图动态重渲染，零依赖、无框架。
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var SEL = '.pcard,.catcard__media,.datacard,.quicklink,.glass-btn,.chip,.tag,' +
+    '.tabbar,.dfab,.btn,.thumb__art,.sibcard__art,.notice,.themecard,.dropzone,' +
+    '.searchbar__field,.minecell,.uprow,.dlrow,.stepnav__it,.browsecard__media,' +
+    '.watch__art,.craft-cell,.exhcard__media,.dhead__main,.dcard,.uphead,.storage,' +
+    '.chero,.cblock,.watchcard,.minecard,.dquote,.morebtn,.iconbtn';
+
+  var raf = 0;
+  var pending = null;
+  var lit = null; // 当前点亮的元素
+
+  function dim(el) {
+    if (el && el !== lit) el.classList.remove('is-glow');
+  }
+
+  function paint(e) {
+    var t = e.target && e.target.closest ? e.target.closest(SEL) : null;
+    if (t === lit && !t) return;
+    if (t) {
+      var r = t.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) {
+        t.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
+        t.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
+      }
+      t.classList.add('is-glow');
+    }
+    if (lit && lit !== t) dim(lit);
+    lit = t;
+  }
+
+  function onMove(e) {
+    pending = e;
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      raf = 0;
+      if (pending) paint(pending);
+      pending = null;
+    });
+  }
+
+  // 指针移动：桌面鼠标追光
+  window.addEventListener('pointermove', onMove, { passive: true });
+
+  // 按下：触摸设备上立即点亮一次（跟随手指位置）
+  window.addEventListener('pointerdown', function (e) {
+    paint(e);
+  }, { passive: true });
+
+  // 抬起 / 离开窗口：熄灭
+  window.addEventListener('pointerup', function () {
+    if (lit && lit.classList && lit.matches(':hover') === false && matchMedia('(hover: none)').matches) {
+      // 触摸设备：延迟熄灭，形成光斑渐隐
+      var el = lit;
+      setTimeout(function () { el.classList.remove('is-glow'); }, 240);
+      lit = null;
+    }
+  }, { passive: true });
+
+  document.addEventListener('pointerleave', function () {
+    if (lit) { lit.classList.remove('is-glow'); lit = null; }
+  });
+
+  // 滚动时熄灭，避免光斑悬停在错误位置
+  window.addEventListener('scroll', function () {
+    if (lit) { lit.classList.remove('is-glow'); lit = null; }
+  }, { passive: true, capture: true });
 })();
 
 </script>

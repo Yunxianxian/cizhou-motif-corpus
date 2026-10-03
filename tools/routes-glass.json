@@ -1,0 +1,13 @@
+{
+  "base": "http://127.0.0.1:5199/",
+  "outDir": "dev/shots-glass",
+  "shots": [
+    { "name": "home", "url": "dev/preview.html?r=/home", "w": 390, "h": 844 },
+    { "name": "list", "url": "dev/preview.html?r=/list/plant", "w": 390, "h": 844 },
+    { "name": "detail", "url": "dev/preview.html?r=/detail/plant-mudan-01", "w": 390, "h": 844 },
+    { "name": "profile", "url": "dev/preview.html?r=/profile", "w": 390, "h": 844 },
+    { "name": "craft", "url": "dev/preview.html?r=/craft", "w": 390, "h": 844 },
+    { "name": "dark-home", "url": "dev/preview.html?theme=dark&r=/home", "w": 390, "h": 844 },
+    { "name": "sepia-list", "url": "dev/preview.html?theme=sepia&r=/list/plant", "w": 390, "h": 844 }
+  ]
+}

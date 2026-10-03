@@ -859,6 +859,7 @@ html[data-hero="1"] .statusbar { color: #fff; }
   .stage::after { display: none; }
   .device {
     width: 100vw;
+    height: 100vh;
     height: 100dvh;
     padding: 0;
     border-radius: 0;

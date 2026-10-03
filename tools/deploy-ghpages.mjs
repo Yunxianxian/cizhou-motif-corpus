@@ -305,12 +305,13 @@ if (SKIP_PAGES) {
 } else {
   const source = { source: { branch: BRANCH, path: '/' } };
   try {
+    // 成功时 GitHub 可能返回 201+对象，也可能返回 204+空响应体，故用可选链兜底
     const p = await api(`/repos/${owner}/${repo}/pages`, { method: 'POST', body: source });
-    console.log(`Pages 已开启: ${p.html_url || pagesUrl}`);
+    console.log(`Pages 已开启: ${p?.html_url || pagesUrl}`);
   } catch (e) {
     if (e.status === 409) {
       const p = await api(`/repos/${owner}/${repo}/pages`, { method: 'PUT', body: source });
-      console.log(`Pages 已更新: ${p.html_url || pagesUrl}`);
+      console.log(`Pages 已更新: ${p?.html_url || pagesUrl}`);
     } else {
       console.log(`自动开启 Pages 失败（${e.message}）。`);
       console.log(`请手动开启：仓库 Settings → Pages → Source 选 Deploy from a branch → ${BRANCH} / (root)`);

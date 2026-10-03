@@ -83,6 +83,7 @@ assets/css/
   tokens.css                设计变量、三套主题（浅色 / 深色 / 宣纸）、字号档位、基础重置
   base.css                  设备外壳、页面与转场、导航条、底部导航、通用组件（按钮/面板/Toast/骨架屏…）
   pages.css                 各页面样式（首页 / 列表 / 详情 / 工艺 / 展览 / 我的 / 上传 / 主题…）
+  glass.css                 液态玻璃增强层：环境光渐变底、玻璃面板、镜面高光、指针追光镀层
 assets/js/
   icons.js                  线性图标库（24 网格，随 currentColor 变色）
   ornament.js               程序化图形引擎：纹样、器物表面、连续纹样、窑址场景、首页大图
@@ -99,6 +100,7 @@ assets/js/
   view-extra.js             上传 / 主题更换 / 更多服务 / 关于
   router.js                 哈希路由、页面转场、屏幕左缘右滑返回
   app.js                    启动、底部导航胶囊动画、共享元素转场接线
+  glass.js                  液态玻璃指针追光：光斑跟随指针 / 触摸位置（rAF 节流、事件委托）
 assets/img/                应用图标（180/192/512，由 tools/make_icons.py 生成）+ 放馆藏照片的位置
 manifest.webmanifest       添加到主屏幕用的应用清单（standalone、图标、主题色）
 手机/
