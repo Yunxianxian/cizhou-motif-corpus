@@ -65,20 +65,23 @@ html[data-theme="light"] {
   --scrim: rgba(20, 18, 16, .42);
   color-scheme: light;
 
-  /* 液态玻璃：窑火暖调环境光 + 瓷釉玻璃 */
+  /* 液态玻璃：博物馆纯白 + 微玻璃（黑白摄影为视觉主角） */
   --page-bg:
-    radial-gradient(120% 85% at 88% -8%, rgba(228, 168, 104, .2) 0%, transparent 56%),
-    radial-gradient(105% 80% at -14% 32%, rgba(148, 176, 160, .15) 0%, transparent 60%),
-    radial-gradient(115% 90% at 58% 114%, rgba(196, 142, 102, .15) 0%, transparent 56%),
-    linear-gradient(180deg, #f7f4ee 0%, #f1ede6 100%);
-  --g-bg: rgba(255, 255, 255, .46);
-  --g-bg-2: rgba(255, 255, 255, .64);
-  --g-hi: rgba(255, 255, 255, .85);
-  --g-brd: rgba(255, 255, 255, .62);
-  --g-sheen: rgba(255, 255, 255, .55);
-  --g-shadow: 0 12px 32px rgba(96, 72, 48, .1), 0 2px 8px rgba(96, 72, 48, .06);
-  --g-blur: blur(22px) saturate(1.7);
-  --g-blur-2: blur(30px) saturate(1.9);
+    linear-gradient(180deg, #ffffff 0%, #f3f3f5 100%);
+  --g-bg: rgba(255, 255, 255, .72);
+  --g-bg-2: rgba(255, 255, 255, .88);
+  --g-hi: rgba(255, 255, 255, .95);
+  --g-brd: rgba(20, 20, 20, .07);
+  --g-sheen: rgba(255, 255, 255, .7);
+  --g-shadow: 0 10px 28px rgba(20, 20, 24, .08), 0 2px 6px rgba(20, 20, 24, .04);
+  --g-blur: blur(22px) saturate(1.5);
+  --g-blur-2: blur(30px) saturate(1.7);
+  /* 底部导航：高透液态玻璃 */
+  --g-tab-1: rgba(255, 255, 255, .5);
+  --g-tab-2: rgba(255, 255, 255, .26);
+  --g-pill-1: rgba(255, 255, 255, .72);
+  --g-pill-2: rgba(255, 255, 255, .42);
+  --g-pill-brd: rgba(255, 255, 255, .8);
 }
 
 /* --------------------------------- 深色 --------------------------------- */
@@ -117,6 +120,12 @@ html[data-theme="dark"] {
   --g-shadow: 0 14px 34px rgba(0, 0, 0, .44), 0 2px 8px rgba(0, 0, 0, .3);
   --g-blur: blur(22px) saturate(1.6);
   --g-blur-2: blur(30px) saturate(1.8);
+  /* 底部导航：高透液态玻璃 */
+  --g-tab-1: rgba(40, 40, 47, .48);
+  --g-tab-2: rgba(28, 28, 34, .28);
+  --g-pill-1: rgba(255, 255, 255, .16);
+  --g-pill-2: rgba(255, 255, 255, .07);
+  --g-pill-brd: rgba(255, 255, 255, .18);
 }
 
 /* --------------------------------- 宣纸 --------------------------------- */
@@ -155,6 +164,12 @@ html[data-theme="sepia"] {
   --g-shadow: 0 12px 32px rgba(96, 70, 36, .11), 0 2px 8px rgba(96, 70, 36, .06);
   --g-blur: blur(22px) saturate(1.6);
   --g-blur-2: blur(30px) saturate(1.8);
+  /* 底部导航：高透液态玻璃 */
+  --g-tab-1: rgba(253, 248, 237, .52);
+  --g-tab-2: rgba(253, 248, 237, .28);
+  --g-pill-1: rgba(255, 255, 255, .68);
+  --g-pill-2: rgba(255, 255, 255, .4);
+  --g-pill-brd: rgba(255, 255, 255, .75);
 }
 
 html[data-font="1.08"] { --fs: 1.08; }

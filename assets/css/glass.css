@@ -9,16 +9,38 @@
   background-attachment: local, local, local, local;
 }
 
-/* 首页 / 我的 的圆角内容板：延续环境光，与 hero 图柔和衔接 */
+/* 首页 / 我的 的圆角内容板：浅色主题为设计稿的纯白面，其他主题延续环境光 */
 .homesheet,
 .profilesheet {
   background: var(--page-bg);
   box-shadow: 0 -1px 0 rgba(255, 255, 255, .35), 0 -18px 38px rgba(20, 16, 12, .1);
 }
+html[data-theme="light"] .homesheet,
+html[data-theme="light"] .profilesheet {
+  background: var(--paper);
+  box-shadow: 0 -14px 34px rgba(10, 10, 14, .18);
+}
 html[data-theme="dark"] .homesheet,
 html[data-theme="dark"] .profilesheet {
   box-shadow: 0 -1px 0 rgba(255, 255, 255, .07), 0 -18px 38px rgba(0, 0, 0, .4);
 }
+
+/* ------------------------- 照片满铺（设计稿样式） ------------------------- */
+/* 分类卡 / 我常看的纹样：照片去内边距、cover 裁切铺满 */
+.catcard__media { padding: 0; }
+.catcard__media .art { width: 100%; height: 100%; object-fit: cover; }
+.watch__art { padding: 0; }
+.watch__art .art { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+/* 列表卡 / 详情中替换为照片的纹样：铺满而非留白 */
+.pcard__media { padding: 0; }
+.pcard__media .art { width: 100%; height: 100%; object-fit: cover; }
+.pcard__media svg.art { padding: 14px; }
+.dhead__main img.art--photo { object-fit: cover; }
+.prow__media img.art--photo, .lrow__art img.art--photo, .hrow__art img.art--photo,
+.sibcard__art img.art--photo, .thumb__art img.art--photo { object-fit: cover; }
+/* 矢量占位图的回退内边距 */
+.catcard__media svg.art { padding: 10px; }
+.watch__art svg.art { padding: 10px; }
 
 /* ------------------------------- 玻璃配方 ------------------------------- */
 /* 厚玻璃（主要面板）：半透明 + 景深模糊 + 顶部镜面高光 + 折射描边 */
@@ -182,16 +204,17 @@ html[data-theme="dark"] .notice.is-press { background: rgba(255, 255, 255, .05);
 html[data-theme="dark"] .glass-btn { box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 16px rgba(0, 0, 0, .4); }
 
 /* ------------------------------ 底部导航胶囊 ------------------------------ */
+/* iOS 液态玻璃：高透 + 强模糊 + 顶部镜面高光，内容清晰透出 */
 .tabbar {
-  background: linear-gradient(180deg, var(--g-bg-2) 0%, var(--g-bg) 100%);
+  background: linear-gradient(180deg, var(--g-tab-1) 0%, var(--g-tab-2) 100%);
   border: 1px solid var(--g-brd);
   box-shadow:
     inset 0 1.5px 0 var(--g-hi),
-    inset 0 -1px 0 rgba(0, 0, 0, .04),
-    0 18px 44px rgba(50, 38, 26, .16),
-    0 3px 10px rgba(50, 38, 26, .08);
-  backdrop-filter: var(--g-blur-2);
-  -webkit-backdrop-filter: var(--g-blur-2);
+    inset 0 -0.5px 0 rgba(0, 0, 0, .05),
+    0 18px 44px rgba(20, 20, 26, .14),
+    0 3px 10px rgba(20, 20, 26, .07);
+  backdrop-filter: blur(28px) saturate(1.9);
+  -webkit-backdrop-filter: blur(28px) saturate(1.9);
 }
 html[data-theme="dark"] .tabbar {
   box-shadow:
@@ -200,15 +223,15 @@ html[data-theme="dark"] .tabbar {
     0 3px 10px rgba(0, 0, 0, .35);
 }
 
-/* 选中胶囊：液态玻璃浮珠 */
+/* 选中胶囊：液态玻璃浮珠（圆角与导航栏同心：30 - 12 = 18px，见 base.css） */
 .tabbar__pill {
-  background: linear-gradient(180deg, var(--g-hi) 0%, var(--g-bg) 90%);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 14px rgba(50, 38, 26, .12);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, var(--g-pill-1) 0%, var(--g-pill-2) 100%);
+  border: 1px solid var(--g-pill-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 12px rgba(20, 20, 26, .1);
+  backdrop-filter: blur(10px) saturate(1.5);
+  -webkit-backdrop-filter: blur(10px) saturate(1.5);
 }
-html[data-theme="dark"] .tabbar__pill { box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 14px rgba(0, 0, 0, .4); }
+html[data-theme="dark"] .tabbar__pill { box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 12px rgba(0, 0, 0, .4); }
 
 .tab { transition: color var(--d-2) var(--e-out); }
 .tab.is-on .tab__ic { transform: translateY(-1.5px) scale(1.08); transition-timing-function: var(--e-liquid); }

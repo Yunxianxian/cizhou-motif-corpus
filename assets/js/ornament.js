@@ -554,7 +554,8 @@
 
   Art.motif = function (spec) {
     spec = spec || {};
-    if (spec.photo) return photoTag(spec.photo, spec.alt || '', 'art--motif');
+    const photo = spec.photo || Art.photos.motif[spec.seed];
+    if (photo) return photoTag(photo, spec.alt || '', 'art--motif');
     const body = motifBody(spec);
     const cls = 'art art--motif' + (body.line ? ' art--line' : '');
     return '<svg class="' + cls + '" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">' +

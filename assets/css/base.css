@@ -649,7 +649,7 @@ html[data-hero="1"] .statusbar { color: #fff; }
   position: absolute;
   top: 12px;
   height: calc(100% - 24px);
-  border-radius: 22px;
+  border-radius: 18px; /* 与导航栏同心：30px - 12px 内边距 */
   background: var(--paper-3);
   z-index: 0;
 }

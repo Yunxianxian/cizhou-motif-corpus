@@ -21,14 +21,22 @@
 
     const watch = D.watchList.map((w, i) => {
       const p = D.byId(w.id) || D.patterns[i];
-      return '<a class="watch" data-nav="#/detail/' + p.id + '"><span class="watch__art">' + U.motif(p) + '</span>' +
+      // 「我常看的纹样」使用专属照片（seed 带 watchimg- 前缀），不影响列表/详情的矢量线稿
+      const art = CZ.Art.photos.motif['watchimg-' + p.id]
+        ? CZ.Art.motif({ seed: 'watchimg-' + p.id, alt: p.title })
+        : U.motif(p);
+      return '<a class="watch" data-nav="#/detail/' + p.id + '"><span class="watch__art">' + art + '</span>' +
         '<b>' + U.esc(w.label) + '</b><i class="' + (w.status.indexOf('暂无') === 0 ? 'is-quiet' : '') + '">' + U.esc(w.status) + '</i></a>';
     }).join('');
 
     return U.el(
       '<div class="profile">' +
       '<section class="phead">' +
-      '<div class="phead__bg">' + CZ.Art.headTexture('profile') + '</div>' +
+      '<div class="phead__bg">' +
+      (CZ.Art.photos.scene.phead
+        ? '<img class="art art--scene" src="' + CZ.Art.photos.scene.phead + '" alt="">'
+        : CZ.Art.headTexture('profile')) +
+      '</div>' +
       '<div class="phead__tools">' +
       '<button class="glass-btn glass-btn--dark" id="pScan" aria-label="扫码">' + CZ.icon('scan', { size: 19 }) + '</button>' +
       '<button class="glass-btn glass-btn--dark" id="pBadge" aria-label="成就">' + CZ.icon('hexagon', { size: 19 }) + '</button>' +
@@ -85,7 +93,7 @@
         title: '语料库公告',
         desc: CZ.DATA.app.notice,
         items: [
-          { icon: 'book', label: '查看更新日志', desc: 'v1.1.0 · 液态玻璃界面升级', onTap: () => CZ.router.go('#/about') },
+          { icon: 'book', label: '查看更新日志', desc: 'v1.2.0 · 黑白摄影馆藏图上线', onTap: () => CZ.router.go('#/about') },
           { icon: 'calendar', label: '预约上线提醒', desc: '上线当日通知我', onTap: () => CZ.ui.toast('已预约上线提醒', { icon: 'check' }) }
         ]
       });
