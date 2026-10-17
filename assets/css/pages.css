@@ -68,7 +68,7 @@ img.art--scene, img.art--hero { object-fit: cover; }
   overflow: hidden;
   background: #201e1c;
 }
-.hero__viewport { position: absolute; inset: 0; overflow: hidden; will-change: transform; }
+.hero__viewport { position: absolute; inset: 0; overflow: hidden; will-change: transform; touch-action: pan-y; }
 .hero__track { display: flex; height: 100%; }
 .hero__slide {
   position: relative;

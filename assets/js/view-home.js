@@ -112,7 +112,7 @@
     const hometop = U.qs('#hometop', pageEl);
     const dots = U.qsa('.hero__dot', pageEl);
     const D = CZ.DATA;
-    let index = 0, timer = null, dragging = false, startX = 0, dx = 0, w = 1;
+    let index = 0, timer = null, dragging = false, startX = 0, dx = 0, w = 1, moved = false;
     let copyAnimation = null;
 
     function goTo(i, animate) {
@@ -140,19 +140,26 @@
     }
 
     dots.forEach((d) => d.addEventListener('click', (e) => { e.stopPropagation(); goTo(+d.dataset.dot); autoplay(); }));
+    /* click 是在 pointerup 之后才触发的，那时 dx 已被 endDrag 清零，
+       所以不能再用 dx 判断「这是拖拽还是点击」，否则滑完一张会立刻误跳转。
+       改用独立的 moved 标记；并且必须 stopPropagation —— 路由的 [data-nav]
+       委托挂在 document 的冒泡阶段，只 preventDefault 拦不住它。 */
     track.addEventListener('click', (e) => {
-      if (Math.abs(dx) > 8) e.preventDefault();
+      if (!moved) return;
+      e.preventDefault();
+      e.stopPropagation();
     }, true);
 
     const vp = U.qs('.hero__viewport', pageEl);
     vp.addEventListener('pointerdown', (e) => {
-      dragging = true; startX = e.clientX; dx = 0; w = vp.clientWidth || 390;
+      dragging = true; moved = false; startX = e.clientX; dx = 0; w = vp.clientWidth || 390;
       track.style.transition = 'none';
       clearInterval(timer);
     });
     vp.addEventListener('pointermove', (e) => {
       if (!dragging) return;
       dx = e.clientX - startX;
+      if (Math.abs(dx) > 8) moved = true;
       track.style.transform = 'translateX(' + (-index * 100 + (dx / w) * 100) + '%)';
     });
     const endDrag = () => {
@@ -160,7 +167,7 @@
       dragging = false;
       if (Math.abs(dx) > w * 0.18) goTo(index + (dx < 0 ? 1 : -1));
       else goTo(index);
-      dx = 0;
+      dx = 0; // 注意：这里不要重置 moved，紧随其后的 click 还要靠它判断
       autoplay();
     };
     vp.addEventListener('pointerup', endDrag);
