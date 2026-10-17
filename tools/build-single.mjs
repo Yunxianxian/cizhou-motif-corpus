@@ -40,19 +40,19 @@ if (/<script src="/.test(html)) {
     let js = await read(src);
     if (/<\/script/i.test(js)) throw new Error('脚本内含 </script，无法安全内联：' + src);
     // photos.js：把登记的照片读成 base64 内联，保证单文件真正零外部依赖
-    if (/photos\.js$/.test(src)) {
+    if (/(?:photos|report-data)\.js$/.test(src)) {
       const { readFile: rf } = await import('node:fs/promises');
-      const imgRe = /'(assets\/img\/[^']+\.(?:jpg|jpeg|png))'/g;
+      const imgRe = /(['"])(assets\/img\/[^'"]+\.(?:jpg|jpeg|png))\1/g;
       let im;
       const seen = new Map();
       while ((im = imgRe.exec(js))) {
-        if (seen.has(im[1])) continue;
-        const buf = await rf(join(root, im[1]));
-        const mime = im[1].endsWith('.png') ? 'image/png' : 'image/jpeg';
-        seen.set(im[1], 'data:' + mime + ';base64,' + buf.toString('base64'));
+        if (seen.has(im[2])) continue;
+        const buf = await rf(join(root, im[2]));
+        const mime = im[2].endsWith('.png') ? 'image/png' : 'image/jpeg';
+        seen.set(im[2], 'data:' + mime + ';base64,' + buf.toString('base64'));
       }
-      for (const [p, uri] of seen) js = js.split("'" + p + "'").join("'" + uri + "'");
-      console.log('photos.js 内联图片: ' + seen.size + ' 张');
+      for (const [p, uri] of seen) js = js.split("'" + p + "'").join("'" + uri + "'").split('"' + p + '"').join('"' + uri + '"');
+      console.log(src + ' 内联图片: ' + seen.size + ' 张');
     }
     html = html.replace(tag, '<script>\n/* ===== ' + src + ' ===== */\n' + js + '\n</script>');
   }

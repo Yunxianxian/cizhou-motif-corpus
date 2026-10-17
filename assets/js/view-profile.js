@@ -60,6 +60,13 @@
       '<span class="notice__vp"><span class="notice__track">' + U.esc(D.app.notice) + '</span></span>' +
       '</button>' +
 
+      '<a class="report-entry" href="#/report" data-nav="#/report">' +
+      '<span class="report-entry__top"><span class="report-entry__icon">' + CZ.icon('book', { size: 21 }) + '</span>' +
+      '<span>项目研究 · 总结报告</span></span>' +
+      '<h2>' + U.esc(CZ.REPORT.title) + '</h2>' +
+      '<span class="report-entry__bottom"><span>研究概览 · 技术路径 · 创新成果</span>' +
+      '<span class="report-entry__go">阅读报告' + CZ.icon('next', { size: 14 }) + '</span></span></a>' +
+
       '<section class="watchcard">' +
       '<div class="sec-head"><div class="sec-head__tx"><h2>我常看的纹样</h2></div>' +
       '<a class="linkbtn" data-nav="#/favorites">全部' + CZ.icon('next', { size: 13 }) + '</a></div>' +

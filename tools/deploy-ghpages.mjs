@@ -36,7 +36,15 @@ const MESSAGE = flagVal('message', `Deploy 磁州窑数智化图案语料库 (${
 const DRY = hasFlag('dry-run');
 const SKIP_PAGES = hasFlag('skip-pages');
 
-const SKIP_DIRS = new Set(['.git', 'node_modules', '.dsh', '.github']);
+// 只发布站点运行时需要的内容；下面这些是「工作资料」，不进线上仓库。
+// 要恢复某个目录，从这里删掉对应名字即可。
+const SKIP_DIRS = new Set([
+  '.git', 'node_modules', '.dsh', '.github',
+  '手机',          // 单文件生成物（约 26MB），按要求不上传
+  '纹样图片',       // 原始纹样素材 57.9MB，站点不引用
+  '参考截图',       // 参考图 4.9MB，站点不引用
+  'review-shots',  // 评审用的临时截图
+]);
 const SKIP_FILES = new Set(['.DS_Store', 'Thumbs.db', 'desktop.ini']);
 const MAX_BLOB = 100 * 1024 * 1024; // GitHub 单文件硬上限
 
@@ -133,10 +141,32 @@ const entries = files.map((abs, i) => ({
   abs,
   path: relative(ROOT, abs).split(sep).join('/'),
   size: stats[i].size,
+  mtimeMs: stats[i].mtimeMs,
 }));
 
 console.log(`源目录: ${ROOT}`);
 console.log(`文件数: ${entries.length}    总体积: ${human(total)}`);
+
+// 防呆：单文件版是「生成物」，改了源文件却忘记重建，手机版就会停留在旧内容/旧版本号
+const SINGLE_REL = '手机/磁州窑纹样语料库.html';
+const singleEntry = entries.find((e) => e.path === SINGLE_REL);
+if (singleEntry) {
+  const stale = entries.filter(
+    (e) =>
+      /\.(js|css|html|webmanifest)$/i.test(e.path) &&
+      !e.path.startsWith('手机/') &&
+      !e.path.startsWith('dev/') &&
+      !e.path.startsWith('.workbuddy/') &&
+      e.mtimeMs > singleEntry.mtimeMs
+  );
+  if (stale.length) {
+    console.warn(`\n⚠  单文件版（${SINGLE_REL}）可能已过期：以下 ${stale.length} 个源文件比它更新`);
+    for (const s of stale.slice(0, 8)) console.warn(`     ${s.path}`);
+    if (stale.length > 8) console.warn(`     …另有 ${stale.length - 8} 个`);
+    console.warn('   请先执行： node tools/build-single.mjs');
+    console.warn('   否则线上手机版里仍是旧内容与旧版本号。若确认无需重建可忽略本提示。\n');
+  }
+}
 const oversized = entries.filter((e) => e.size > MAX_BLOB);
 if (oversized.length) {
   console.error('\n以下文件超过 GitHub 100MB 上限，请先移出：');

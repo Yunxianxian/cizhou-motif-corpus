@@ -1,0 +1,51 @@
+.application-home { margin-top: 26px; }
+.application-strip { display: flex; gap: 12px; padding: 0 18px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.application-strip::-webkit-scrollbar { display: none; }
+.application-card { display: block; border: 1px solid var(--line-2); border-radius: 24px; overflow: hidden; background: var(--paper); }
+.application-card--compact { flex: 0 0 80%; scroll-snap-align: start; }
+.application-card__image { height: 210px; overflow: hidden; background: #f3f2ef; }
+.application-card__image img { width: 100%; height: 100%; object-fit: contain; }
+.application-card__image--brand img { object-fit: cover; }
+.application-card__image--social { padding: 14px; background: #eceee8; }
+.application-card__image--social img { object-fit: cover; object-position: center top; border-radius: 12px; }
+.application-card__image--platform { padding: 14px; background: #242424; }
+.application-card__copy { padding: 18px; }
+.application-card__copy > span, .application-detail__heading > span { color: var(--muted); font-size: 11px; letter-spacing: .1em; }
+.application-card__copy h3 { font-size: 18px; line-height: 1.5; margin-top: 6px; }
+.application-card__copy p { font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 6px; }
+.application-card__copy > b { display: flex; align-items: center; gap: 5px; font-size: 11px; margin-top: 17px; color: var(--ink-2); }
+.applications-intro { padding: 28px 22px 22px; }
+.applications-intro > span { font-size: 9px; letter-spacing: .17em; color: var(--muted); }
+.applications-intro h1 { font-size: 33px; line-height: 1.35; margin-top: 13px; }
+.applications-intro p { font-size: 13px; line-height: 1.9; color: var(--muted); margin-top: 14px; }
+.application-filters { display: flex; gap: 8px; overflow-x: auto; padding: 0 20px 20px; scrollbar-width: none; }
+.application-filters button { flex: none; padding: 9px 13px; border-radius: 99px; background: var(--paper-2); color: var(--muted); font-size: 12px; }
+.application-filters button.is-on { background: var(--ink); color: var(--paper); }
+.application-list { display: grid; gap: 22px; padding: 0 18px; }
+.application-list [hidden] { display: none; }
+.application-source { padding: 22px; color: var(--muted-2); font-size: 11px; line-height: 1.9; }
+.application-detail__heading { padding: 24px 22px; }
+.application-detail__heading h1 { font-size: 27px; line-height: 1.4; margin-top: 10px; }
+.application-detail__heading p { font-size: 13px; line-height: 1.95; color: var(--muted); margin-top: 14px; }
+.application-main { margin: 0 18px; }
+.application-main button { display: grid; place-items: center; width: 100%; border-radius: 22px; overflow: hidden; background: var(--paper-2); }
+.application-main img { width: auto; height: auto; max-width: 100%; max-height: 470px; border-radius: 22px; }
+.application-main figcaption { color: var(--muted-2); font-size: 11px; padding: 10px 2px; }
+.application-process, .application-gallery, .application-related { padding: 26px 22px 0; }
+.application-process h2, .application-gallery h2, .application-related h2 { font-size: 20px; margin-bottom: 19px; }
+.application-process > div { display: flex; align-items: baseline; gap: 15px; border-top: 1px solid var(--line-2); padding: 18px 0; }
+.application-process > div > span { color: var(--muted-2); font-size: 12px; letter-spacing: .1em; }
+.application-process h3 { font-size: 15px; }
+.application-process p { color: var(--muted); font-size: 13px; line-height: 1.9; margin-top: 7px; }
+.application-gallery > div { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.application-gallery button { text-align: left; border-radius: 16px; overflow: hidden; background: var(--paper-2); }
+.application-gallery__image { display: grid; place-items: center; height: 170px; padding: 8px; }
+.application-gallery__image img { width: auto; height: auto; max-width: 100%; max-height: 154px; border-radius: 10px; }
+.application-gallery button span { display: block; padding: 10px; font-size: 11px; color: var(--muted); }
+.application-related > p { color: var(--muted); font-size: 12px; margin-top: -7px; margin-bottom: 12px; }
+.application-related a { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--line-2); padding: 12px 0; font-size: 13px; }
+.application-related a > .art { width: 54px; height: 54px; border-radius: 12px; object-fit: contain; background: white; }
+.application-related a > span { flex: 1; }
+.application-report { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 28px 18px 0; padding: 19px; background: var(--paper-2); border-radius: 18px; }
+.application-report small { display: block; color: var(--muted); font-size: 11px; margin-bottom: 6px; }
+.application-report b { font-size: 14px; }

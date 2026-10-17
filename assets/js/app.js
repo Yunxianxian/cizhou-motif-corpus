@@ -14,48 +14,212 @@
   let pendingMorph = null;
   let currentTab = null;
 
+  let lensFrame = 0;
+  let lensPosition = null;
+  let lensHeld = 0;
+  let holdFrame = 0;
+  let suppressTabClickUntil = 0;
+  let cancelLensDrag = () => {};
+
   function renderTabs(activeTab) {
     if (activeTab === currentTab) return;
     currentTab = activeTab;
     const bar = document.getElementById('tabbar');
-    const items = TABS.map((t) =>
-      '<button class="tab' + (t.key === activeTab ? ' is-on' : '') + '" data-tab="' + t.key + '"' +
-      ' aria-label="' + t.label + '">' +
-      '<span class="tab__ic">' + CZ.icon(t.icon, { size: 24 }) + '</span>' +
-      '<span class="tab__tx">' + t.label + '</span></button>').join('');
-    bar.innerHTML = '<div class="tabbar__pill" id="tabPill"></div><div class="tabbar__in">' + items + '</div>';
-    const idx = Math.max(0, TABS.findIndex((t) => t.key === activeTab));
-    requestAnimationFrame(() => movePill(idx, true));
-    U.qsa('.tab', bar).forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const t = TABS.filter((x) => x.key === btn.dataset.tab)[0];
-        CZ.ui.haptic('light');
-        CZ.router.go(t.route, { mode: 'tab' });
+    // Keep the lens and buttons mounted so interrupted transitions retain their position.
+    if (!bar.querySelector('.tabbar__in')) {
+      const content = (t) => '<span class="tab__content"><span class="tab__ic">' +
+        CZ.icon(t.icon, { size: 24 }) + '</span><span class="tab__tx">' + t.label + '</span></span>';
+      const items = TABS.map((t) => '<button class="tab" data-tab="' + t.key +
+        '" aria-label="' + t.label + '">' + content(t) + '</button>').join('');
+      const reflections = TABS.map((t) => '<div class="tab tab--reflection">' + content(t) + '</div>').join('');
+      bar.innerHTML = '<div class="tabbar__material" aria-hidden="true"></div><div class="tabbar__in">' + items + '</div>' +
+        '<div class="tabbar__pill" id="tabPill" aria-hidden="true"><div class="tabbar__lens-track">' +
+        reflections + '</div></div>';
+      U.qsa('.tabbar__in .tab', bar).forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          if (event.detail !== 0 && performance.now() < suppressTabClickUntil) return;
+          const t = TABS.find((x) => x.key === btn.dataset.tab);
+          CZ.ui.haptic('light');
+          // A selected tab may own a deep page; always return to its root.
+          CZ.router.go(t.route, { mode: 'tab', resetScroll: true });
+        });
       });
+      wireLensDrag(bar);
+    }
+    U.qsa('.tabbar__in .tab', bar).forEach((btn) => {
+      const on = btn.dataset.tab === activeTab;
+      btn.classList.toggle('is-on', on);
+      if (on) btn.setAttribute('aria-current', 'page');
+      else btn.removeAttribute('aria-current');
+    });
+    const idx = Math.max(0, TABS.findIndex((t) => t.key === activeTab));
+    movePill(idx, !lensPosition);
+  }
+
+  function paintLens(left, width, energy) {
+    const bar = document.getElementById('tabbar');
+    const pill = document.getElementById('tabPill');
+    const track = bar.querySelector('.tabbar__lens-track');
+    const tabs = U.qsa('.tabbar__in .tab', bar);
+    if (!pill || !track) return;
+    lensPosition = { left, width, energy };
+    // Expand the actual lens geometry so its clipped reflection stays aligned.
+    const extra = width * .15 * lensHeld;
+    width += extra;
+    left = Math.max(2, Math.min(bar.clientWidth - width - 2, left - extra / 2));
+    const height = (bar.clientHeight - 14) * (1 + .35 * lensHeld);
+    const top = (bar.clientHeight - height) / 2;
+    pill.style.height = height + 'px';
+    pill.style.top = top + 'px';
+    track.style.top = (-top - 1) + 'px';
+    pill.style.left = left + 'px';
+    pill.style.width = width + 'px';
+    track.style.transform = 'translateX(' + (-left - 1) + 'px)';
+    bar.style.setProperty('--lens-left', left + 'px');
+    bar.style.setProperty('--lens-right', (left + width) + 'px');
+      bar.style.setProperty('--lens-top', top + 'px');
+      bar.style.setProperty('--lens-width', width + 'px');
+      bar.style.setProperty('--lens-height', height + 'px');
+      bar.style.setProperty('--lens-frost', (1 - Math.min(1, lensHeld)).toFixed(3));
+      bar.classList.toggle('has-active-lens', lensHeld > .001);
+    energy = Math.max(energy, lensHeld * .8);
+    bar.style.setProperty('--lens-energy', energy.toFixed(3));
+    bar.classList.add('has-lens');
+    const center = left + width / 2;
+    U.qsa('.tab--reflection .tab__content', track).forEach((el, j) => {
+      const tabCenter = tabs[j].offsetLeft + tabs[j].offsetWidth / 2;
+      const proximity = Math.max(0, 1 - Math.abs(tabCenter - center) / (width * .85));
+      const stretch = energy * proximity;
+      el.style.transform = 'translateX(' + ((tabCenter - center) * stretch * .12) +
+        'px) scale(' + (1.035 + stretch * .15) + ',' + (1.035 + stretch * .06) + ')';
     });
   }
 
   function movePill(i, instant) {
     const bar = document.getElementById('tabbar');
     const pill = document.getElementById('tabPill');
-    const tabs = U.qsa('.tab', bar);
-    if (!pill || !tabs[i]) return;
+    const tabs = U.qsa('.tabbar__in .tab', bar);
+    const track = bar.querySelector('.tabbar__lens-track');
+    if (!pill || !tabs[i] || !track) return;
+    cancelAnimationFrame(lensFrame);
     const b = tabs[i].getBoundingClientRect();
     const host = bar.getBoundingClientRect();
-    const left = (b.left - host.left + 5) + 'px';
-    const width = (b.width - 10) + 'px';
-    if (instant || U.reduceMotion()) {
-      pill.style.transition = 'none';
-      pill.style.left = left;
-      pill.style.width = width;
-      requestAnimationFrame(() => { pill.style.transition = ''; });
-    } else {
-      const from = { left: pill.style.left || left, width: pill.style.width || width };
-      pill.animate([from, { left: left, width: width }],
-        { duration: 380, easing: 'cubic-bezier(.34,1.36,.5,1)' });
-      pill.style.left = left;
-      pill.style.width = width;
+    const scale = host.width / bar.offsetWidth || 1;
+    const target = {
+      left: (b.left - host.left) / scale - bar.clientLeft + 5,
+      width: b.width / scale - 10
+    };
+    track.style.width = bar.clientWidth + 'px';
+    if (instant || U.reduceMotion() || !lensPosition) {
+      paintLens(target.left, target.width, 0);
+      return;
     }
+    const from = { ...lensPosition };
+    const distance = target.left - from.left;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / 480);
+      if (t === 1 || U.reduceMotion()) {
+        paintLens(target.left, target.width, 0);
+        lensFrame = 0;
+        return;
+      }
+      const ease = 1 - Math.exp(-7 * t) * Math.cos(8 * t);
+      const energy = Math.sin(Math.PI * t);
+      const bulge = Math.min(18, Math.abs(distance) * .1) * energy;
+      const width = from.width + (target.width - from.width) * ease + bulge;
+      const left = Math.max(5, Math.min(bar.clientWidth - width - 5,
+        from.left + distance * ease - bulge / 2));
+      paintLens(left, width, energy);
+      lensFrame = requestAnimationFrame(tick);
+    };
+    lensFrame = requestAnimationFrame(tick);
+  }
+
+  function setLensHeld(held) {
+    cancelAnimationFrame(holdFrame);
+    const from = lensHeld;
+    const target = held && !U.reduceMotion() ? 1 : 0;
+    if (U.reduceMotion()) {
+      lensHeld = target;
+      if (lensPosition) paintLens(lensPosition.left, lensPosition.width, lensPosition.energy || 0);
+      return;
+    }
+    const start = performance.now();
+    const duration = held ? 280 : 400;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const spring = t === 1 ? 1 : 1 - Math.exp(-7 * t) * Math.cos(9 * t);
+      lensHeld = Math.max(0, from + (target - from) * spring);
+      if (lensPosition) paintLens(lensPosition.left, lensPosition.width, lensPosition.energy || 0);
+      if (t < 1) holdFrame = requestAnimationFrame(tick);
+      else holdFrame = 0;
+    };
+    holdFrame = requestAnimationFrame(tick);
+  }
+
+  function wireLensDrag(bar) {
+    let drag = null;
+    const tabs = () => U.qsa('.tabbar__in .tab', bar);
+    const localX = (clientX) => {
+      const box = bar.getBoundingClientRect();
+      return (clientX - box.left) / (box.width / bar.offsetWidth || 1) - bar.clientLeft;
+    };
+    const nearest = (center) => {
+      let best = 0, distance = Infinity;
+      tabs().forEach((tab, i) => {
+        const box = tab.getBoundingClientRect();
+        const d = Math.abs(localX(box.left + box.width / 2) - center);
+        if (d < distance) { best = i; distance = d; }
+      });
+      return best;
+    };
+    function end(cancelled) {
+      if (!drag) return;
+      const state = drag;
+      drag = null;
+      suppressTabClickUntil = performance.now() + 500;
+      bar.classList.remove('is-lens-held');
+      setLensHeld(false);
+      if (bar.hasPointerCapture(state.pointerId)) bar.releasePointerCapture(state.pointerId);
+      const i = cancelled ? Math.max(0, TABS.findIndex(t => t.key === currentTab)) : nearest(lensPosition.left + lensPosition.width / 2);
+      if (!cancelled) {
+        CZ.ui.haptic('light');
+        CZ.router.go(TABS[i].route, { mode: 'tab', resetScroll: true });
+      }
+      // Same-tab navigation does not re-render the tabs; settle explicitly.
+      movePill(i, false);
+    }
+    cancelLensDrag = () => end(true);
+    bar.addEventListener('pointerdown', (event) => {
+      if (drag || !lensPosition || (event.pointerType === 'mouse' && event.button !== 0)) return;
+      const rect = document.getElementById('tabPill').getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
+      event.preventDefault();
+      cancelAnimationFrame(lensFrame);
+      drag = { pointerId: event.pointerId, x: localX(event.clientX),
+        center: lensPosition.left + lensPosition.width / 2, width: lensPosition.width,
+        hover: nearest(lensPosition.left + lensPosition.width / 2) };
+      bar.setPointerCapture(event.pointerId);
+      bar.classList.add('is-lens-held');
+      setLensHeld(true);
+    });
+    bar.addEventListener('pointermove', (event) => {
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      event.preventDefault();
+      const center = drag.center + localX(event.clientX) - drag.x;
+      const left = Math.max(5, Math.min(bar.clientWidth - drag.width - 5, center - drag.width / 2));
+      paintLens(left, drag.width, .75);
+      const over = nearest(left + drag.width / 2);
+      if (over !== drag.hover) { drag.hover = over; CZ.ui.haptic('light'); }
+    });
+    bar.addEventListener('pointerup', (event) => { if (drag && drag.pointerId === event.pointerId) end(false); });
+    bar.addEventListener('pointercancel', (event) => { if (drag && drag.pointerId === event.pointerId) end(true); });
+    bar.addEventListener('lostpointercapture', (event) => { if (drag && drag.pointerId === event.pointerId) end(true); });
+    bar.addEventListener('contextmenu', event => event.preventDefault());
+    window.addEventListener('blur', cancelLensDrag);
+    window.addEventListener('hashchange', cancelLensDrag);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) cancelLensDrag(); });
   }
 
   let booted = false;
@@ -90,9 +254,10 @@
     CZ.router.start();
 
     window.addEventListener('resize', () => {
+      cancelLensDrag();
       fitDevice();
-      const on = U.qs('.tab.is-on');
-      if (on) movePill(U.qsa('.tab').indexOf(on), true);
+      const on = U.qs('.tabbar__in .tab.is-on');
+      if (on) movePill(U.qsa('.tabbar__in .tab').indexOf(on), true);
     });
 
     setTimeout(() => {

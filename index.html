@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <meta name="description" content="磁州窑数智化图案语料库 · 移动端网页原型：纹样检索、器物出处、相关语料与工艺图谱">
+<!-- 分享预览：微信 / 微博 / Slack / Twitter 等抓取这些标签。og:image 必须是绝对地址 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="磁州窑数智化图案语料库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="磁州窑数智化图案语料库">
+<meta property="og:description" content="黑白之间，千年窑火。纹样检索、器物出处、相关语料与工艺图谱的移动端语料库。">
+<meta property="og:image" content="https://yunxianxian.github.io/cizhou-motif-corpus/assets/img/hero-h1.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="785">
+<meta property="og:url" content="https://yunxianxian.github.io/cizhou-motif-corpus/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="磁州窑数智化图案语料库">
+<meta name="twitter:description" content="黑白之间，千年窑火。纹样检索、器物出处、相关语料与工艺图谱的移动端语料库。">
+<meta name="twitter:image" content="https://yunxianxian.github.io/cizhou-motif-corpus/assets/img/hero-h1.jpg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="纹样语料库">
@@ -17,6 +31,9 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/pages.css">
 <link rel="stylesheet" href="assets/css/glass.css">
+<link rel="stylesheet" href="assets/css/viewer.css">
+<link rel="stylesheet" href="assets/css/report.css">
+<link rel="stylesheet" href="assets/css/applications.css">
 </head>
 <body>
 <div class="stage">
@@ -44,11 +61,12 @@
   <aside class="stage__note">
     <p class="stage__kicker">移动端网页原型</p>
     <h1>磁州窑<br>数智化图案语料库</h1>
-    <p class="stage__desc">按设计稿实现的一级 / 二级 / 三级界面，并补齐了首页与「我的」中隐含的次级页面。全部纹样与器物图为程序化生成的水墨矢量图，可直接替换为馆藏照片。</p>
+    <p class="stage__desc">按设计稿实现的一级 / 二级 / 三级界面，并补齐了首页与「我的」中隐含的次级页面。纹样与器物图已替换为黑白摄影素材，另设「创新应用」与「总结报告」两个专题。</p>
     <ul class="stage__list">
-      <li><b>一级</b><span>首页（轮播 · 装饰分类 · 工艺 · 展览）· 我的（快捷宫格 · 公告 · 常看）</span></li>
+      <li><b>一级</b><span>首页（轮播 · 装饰分类 · 工艺 · 展览 · 创新应用）· 我的（快捷宫格 · 公告 · 常看）</span></li>
       <li><b>二级</b><span>植物 / 人物装饰列表 · 传统烧制工艺 · 展览信息 · 关注 / 收藏 / 历史 / 上传 / 下载 / 更多</span></li>
       <li><b>三级</b><span>纹样详情（出处 · 图版 · 相关语料 · 语料范本）· 工序详解 · 展览详情</span></li>
+      <li><b>专题</b><span>创新应用（品牌视觉 / 数字传播 / 交互展示）· 总结报告</span></li>
       <li><b>交互</b><span>左右推入转场 · 屏幕左缘右滑返回 · 卡片共享元素转场 · 下拉刷新 · 长按快捷操作 · 主题与字号切换</span></li>
     </ul>
     <p class="stage__tip">在手机宽度下打开即为全屏 App 形态</p>
@@ -59,17 +77,22 @@
 <script src="assets/js/ornament.js"></script>
 <script src="assets/js/photos.js"></script>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/report-data.js"></script>
 <script src="assets/js/store.js"></script>
 <script src="assets/js/ui.js"></script>
+<script src="assets/js/viewer.js"></script>
 <script src="assets/js/view-common.js"></script>
 <script src="assets/js/view-home.js"></script>
 <script src="assets/js/view-list.js"></script>
 <script src="assets/js/view-detail.js"></script>
 <script src="assets/js/view-craft.js"></script>
 <script src="assets/js/view-profile.js"></script>
+<script src="assets/js/view-report.js"></script>
+<script src="assets/js/view-applications.js"></script>
 <script src="assets/js/view-extra.js"></script>
 <script src="assets/js/router.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/glass.js"></script>
+<script src="assets/js/refraction.js"></script>
 </body>
 </html>

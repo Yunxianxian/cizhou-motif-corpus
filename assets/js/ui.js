@@ -50,8 +50,16 @@
     return node;
   };
 
+  /* 浏览器在用户首次交互前会拒绝 navigator.vibrate，并往控制台写一条 error。
+     先等一次真实手势再启用震动反馈，避免首屏就冒出无意义的报错。 */
+  let hapticArmed = false;
+  ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, function () { hapticArmed = true; }, { once: true, passive: true });
+  });
+
   ui.haptic = function (kind) {
-    if (navigator.vibrate) { try { navigator.vibrate(kind === 'heavy' ? 18 : 8); } catch (e) { /* noop */ } }
+    if (!hapticArmed || !navigator.vibrate) return;
+    try { navigator.vibrate(kind === 'heavy' ? 18 : 8); } catch (e) { /* noop */ }
   };
 
   /* -------------------------------- 动作面板 -------------------------------- */

@@ -331,6 +331,577 @@
       }
     });
   });
+  // 新增图片沿用现有示例文案，原始 34 条植物纹样内容与 ID 保持不变。
+  // 新素材单独收录；不从训练标签生成年代、器物出处等学术信息。
+  D.groups.plant.find((g) => g.key === 'juancao').count = 10;
+  D.groups.plant.push(
+    { key: 'chanzhi', name: '缠枝纹', motif: 'peony', count: 31 },
+    { key: 'huahui', name: '花卉纹样', motif: 'peony', count: 54 }
+  );
+  const addedPlantImages = [
+  {
+    "id": "plant-chanzhi-01",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "01"
+  },
+  {
+    "id": "plant-chanzhi-02",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "02"
+  },
+  {
+    "id": "plant-chanzhi-03",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "03"
+  },
+  {
+    "id": "plant-chanzhi-04",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "04"
+  },
+  {
+    "id": "plant-chanzhi-05",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "05"
+  },
+  {
+    "id": "plant-chanzhi-06",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "06"
+  },
+  {
+    "id": "plant-chanzhi-07",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "07"
+  },
+  {
+    "id": "plant-chanzhi-08",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "08"
+  },
+  {
+    "id": "plant-chanzhi-09",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "09"
+  },
+  {
+    "id": "plant-chanzhi-10",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "10"
+  },
+  {
+    "id": "plant-chanzhi-11",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "11"
+  },
+  {
+    "id": "plant-chanzhi-12",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "12"
+  },
+  {
+    "id": "plant-chanzhi-13",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "13"
+  },
+  {
+    "id": "plant-chanzhi-14",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "14"
+  },
+  {
+    "id": "plant-chanzhi-15",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "15"
+  },
+  {
+    "id": "plant-chanzhi-16",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "16"
+  },
+  {
+    "id": "plant-chanzhi-17",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "17"
+  },
+  {
+    "id": "plant-chanzhi-18",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "18"
+  },
+  {
+    "id": "plant-chanzhi-19",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "19"
+  },
+  {
+    "id": "plant-chanzhi-20",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "20"
+  },
+  {
+    "id": "plant-chanzhi-21",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "21"
+  },
+  {
+    "id": "plant-chanzhi-22",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "22"
+  },
+  {
+    "id": "plant-chanzhi-23",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "23"
+  },
+  {
+    "id": "plant-chanzhi-24",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "24"
+  },
+  {
+    "id": "plant-chanzhi-25",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "25"
+  },
+  {
+    "id": "plant-chanzhi-26",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "26"
+  },
+  {
+    "id": "plant-chanzhi-27",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "27"
+  },
+  {
+    "id": "plant-chanzhi-28",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "28"
+  },
+  {
+    "id": "plant-chanzhi-29",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "29"
+  },
+  {
+    "id": "plant-chanzhi-30",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "30"
+  },
+  {
+    "id": "plant-chanzhi-31",
+    "template": "plant-mudan-04",
+    "group": "chanzhi",
+    "no": "31"
+  },
+  {
+    "id": "plant-juancao-09",
+    "template": "plant-juancao-01",
+    "group": "juancao",
+    "no": "09"
+  },
+  {
+    "id": "plant-juancao-10",
+    "template": "plant-juancao-01",
+    "group": "juancao",
+    "no": "10"
+  },
+  {
+    "id": "plant-huahui-01",
+    "template": "plant-mudan-01",
+    "group": "huahui",
+    "no": "01"
+  },
+  {
+    "id": "plant-huahui-02",
+    "template": "plant-mudan-02",
+    "group": "huahui",
+    "no": "02"
+  },
+  {
+    "id": "plant-huahui-03",
+    "template": "plant-mudan-03",
+    "group": "huahui",
+    "no": "03"
+  },
+  {
+    "id": "plant-huahui-04",
+    "template": "plant-mudan-04",
+    "group": "huahui",
+    "no": "04"
+  },
+  {
+    "id": "plant-huahui-05",
+    "template": "plant-mudan-05",
+    "group": "huahui",
+    "no": "05"
+  },
+  {
+    "id": "plant-huahui-06",
+    "template": "plant-mudan-06",
+    "group": "huahui",
+    "no": "06"
+  },
+  {
+    "id": "plant-huahui-07",
+    "template": "plant-mudan-07",
+    "group": "huahui",
+    "no": "07"
+  },
+  {
+    "id": "plant-huahui-08",
+    "template": "plant-mudan-08",
+    "group": "huahui",
+    "no": "08"
+  },
+  {
+    "id": "plant-huahui-09",
+    "template": "plant-mudan-09",
+    "group": "huahui",
+    "no": "09"
+  },
+  {
+    "id": "plant-huahui-10",
+    "template": "plant-mudan-10",
+    "group": "huahui",
+    "no": "10"
+  },
+  {
+    "id": "plant-huahui-11",
+    "template": "plant-mudan-11",
+    "group": "huahui",
+    "no": "11"
+  },
+  {
+    "id": "plant-huahui-12",
+    "template": "plant-mudan-12",
+    "group": "huahui",
+    "no": "12"
+  },
+  {
+    "id": "plant-huahui-13",
+    "template": "plant-mudan-01",
+    "group": "huahui",
+    "no": "13"
+  },
+  {
+    "id": "plant-huahui-14",
+    "template": "plant-mudan-02",
+    "group": "huahui",
+    "no": "14"
+  },
+  {
+    "id": "plant-huahui-15",
+    "template": "plant-mudan-03",
+    "group": "huahui",
+    "no": "15"
+  },
+  {
+    "id": "plant-huahui-16",
+    "template": "plant-mudan-04",
+    "group": "huahui",
+    "no": "16"
+  },
+  {
+    "id": "plant-huahui-17",
+    "template": "plant-mudan-05",
+    "group": "huahui",
+    "no": "17"
+  },
+  {
+    "id": "plant-huahui-18",
+    "template": "plant-mudan-06",
+    "group": "huahui",
+    "no": "18"
+  },
+  {
+    "id": "plant-huahui-19",
+    "template": "plant-mudan-07",
+    "group": "huahui",
+    "no": "19"
+  },
+  {
+    "id": "plant-huahui-20",
+    "template": "plant-mudan-08",
+    "group": "huahui",
+    "no": "20"
+  },
+  {
+    "id": "plant-huahui-21",
+    "template": "plant-mudan-09",
+    "group": "huahui",
+    "no": "21"
+  },
+  {
+    "id": "plant-huahui-22",
+    "template": "plant-mudan-10",
+    "group": "huahui",
+    "no": "22"
+  },
+  {
+    "id": "plant-huahui-23",
+    "template": "plant-mudan-11",
+    "group": "huahui",
+    "no": "23"
+  },
+  {
+    "id": "plant-huahui-24",
+    "template": "plant-mudan-12",
+    "group": "huahui",
+    "no": "24"
+  },
+  {
+    "id": "plant-huahui-25",
+    "template": "plant-mudan-01",
+    "group": "huahui",
+    "no": "25"
+  },
+  {
+    "id": "plant-huahui-26",
+    "template": "plant-mudan-02",
+    "group": "huahui",
+    "no": "26"
+  },
+  {
+    "id": "plant-huahui-27",
+    "template": "plant-mudan-03",
+    "group": "huahui",
+    "no": "27"
+  },
+  {
+    "id": "plant-huahui-28",
+    "template": "plant-mudan-04",
+    "group": "huahui",
+    "no": "28"
+  },
+  {
+    "id": "plant-huahui-29",
+    "template": "plant-mudan-05",
+    "group": "huahui",
+    "no": "29"
+  },
+  {
+    "id": "plant-huahui-30",
+    "template": "plant-mudan-06",
+    "group": "huahui",
+    "no": "30"
+  },
+  {
+    "id": "plant-huahui-31",
+    "template": "plant-mudan-07",
+    "group": "huahui",
+    "no": "31"
+  },
+  {
+    "id": "plant-huahui-32",
+    "template": "plant-mudan-08",
+    "group": "huahui",
+    "no": "32"
+  },
+  {
+    "id": "plant-huahui-33",
+    "template": "plant-mudan-09",
+    "group": "huahui",
+    "no": "33"
+  },
+  {
+    "id": "plant-huahui-34",
+    "template": "plant-mudan-10",
+    "group": "huahui",
+    "no": "34"
+  },
+  {
+    "id": "plant-huahui-35",
+    "template": "plant-mudan-11",
+    "group": "huahui",
+    "no": "35"
+  },
+  {
+    "id": "plant-huahui-36",
+    "template": "plant-mudan-12",
+    "group": "huahui",
+    "no": "36"
+  },
+  {
+    "id": "plant-huahui-37",
+    "template": "plant-mudan-01",
+    "group": "huahui",
+    "no": "37"
+  },
+  {
+    "id": "plant-huahui-38",
+    "template": "plant-mudan-02",
+    "group": "huahui",
+    "no": "38"
+  },
+  {
+    "id": "plant-huahui-39",
+    "template": "plant-mudan-03",
+    "group": "huahui",
+    "no": "39"
+  },
+  {
+    "id": "plant-huahui-40",
+    "template": "plant-mudan-04",
+    "group": "huahui",
+    "no": "40"
+  },
+  {
+    "id": "plant-huahui-41",
+    "template": "plant-mudan-05",
+    "group": "huahui",
+    "no": "41"
+  },
+  {
+    "id": "plant-huahui-42",
+    "template": "plant-mudan-06",
+    "group": "huahui",
+    "no": "42"
+  },
+  {
+    "id": "plant-huahui-43",
+    "template": "plant-mudan-07",
+    "group": "huahui",
+    "no": "43"
+  },
+  {
+    "id": "plant-huahui-44",
+    "template": "plant-mudan-08",
+    "group": "huahui",
+    "no": "44"
+  },
+  {
+    "id": "plant-huahui-45",
+    "template": "plant-mudan-09",
+    "group": "huahui",
+    "no": "45"
+  },
+  {
+    "id": "plant-huahui-46",
+    "template": "plant-mudan-10",
+    "group": "huahui",
+    "no": "46"
+  },
+  {
+    "id": "plant-huahui-47",
+    "template": "plant-mudan-11",
+    "group": "huahui",
+    "no": "47"
+  },
+  {
+    "id": "plant-huahui-48",
+    "template": "plant-mudan-12",
+    "group": "huahui",
+    "no": "48"
+  },
+  {
+    "id": "plant-huahui-49",
+    "template": "plant-mudan-01",
+    "group": "huahui",
+    "no": "49"
+  },
+  {
+    "id": "plant-huahui-50",
+    "template": "plant-mudan-02",
+    "group": "huahui",
+    "no": "50"
+  },
+  {
+    "id": "plant-huahui-51",
+    "template": "plant-mudan-03",
+    "group": "huahui",
+    "no": "51"
+  },
+  {
+    "id": "plant-huahui-52",
+    "template": "plant-mudan-04",
+    "group": "huahui",
+    "no": "52"
+  },
+  {
+    "id": "plant-huahui-53",
+    "template": "plant-mudan-05",
+    "group": "huahui",
+    "no": "53"
+  },
+  {
+    "id": "plant-huahui-54",
+    "template": "plant-mudan-06",
+    "group": "huahui",
+    "no": "54"
+  }
+];
+  addedPlantImages.forEach((entry) => {
+    const template = patterns.find((p) => p.id === entry.template);
+    const group = D.groups.plant.find((g) => g.key === entry.group);
+    patterns.push(Object.assign({}, template, {
+      id: entry.id,
+      group: entry.group,
+      groupName: group.name,
+      no: entry.no,
+      listName: group.name + entry.no
+    }));
+  });
+  // 分类以用户确认的原始文件夹为准：两组 mudan 素材均为牡丹纹。
+  // 保留既有 ID，以兼容收藏、历史记录和详情链接。
+  const plantSourceGroups = {"mudan": ["plant-mudan-01", "plant-mudan-02", "plant-mudan-03", "plant-mudan-04", "plant-mudan-05", "plant-mudan-06", "plant-mudan-07", "plant-mudan-08", "plant-mudan-09", "plant-mudan-10", "plant-mudan-11", "plant-mudan-12", "plant-lianhua-01", "plant-lianhua-02", "plant-lianhua-03", "plant-lianhua-04", "plant-lianhua-05", "plant-lianhua-06", "plant-lianhua-07", "plant-lianhua-08", "plant-juhua-01", "plant-juhua-02", "plant-juhua-03", "plant-juhua-04", "plant-juhua-05", "plant-juhua-06", "plant-huahui-01", "plant-huahui-02", "plant-huahui-03", "plant-huahui-04", "plant-huahui-05", "plant-huahui-06", "plant-huahui-07", "plant-huahui-08", "plant-huahui-09", "plant-huahui-10", "plant-huahui-11", "plant-huahui-12", "plant-huahui-13", "plant-huahui-14", "plant-huahui-15", "plant-huahui-16", "plant-huahui-17", "plant-huahui-18", "plant-huahui-19", "plant-huahui-20", "plant-huahui-21", "plant-huahui-22", "plant-huahui-23", "plant-huahui-24", "plant-huahui-25", "plant-huahui-26", "plant-huahui-27", "plant-huahui-28", "plant-huahui-29", "plant-huahui-30", "plant-huahui-31", "plant-huahui-32", "plant-huahui-33", "plant-huahui-34", "plant-huahui-35", "plant-huahui-36", "plant-huahui-37", "plant-huahui-38", "plant-huahui-39", "plant-huahui-40", "plant-huahui-41", "plant-huahui-42", "plant-huahui-43", "plant-huahui-44", "plant-huahui-45", "plant-huahui-46", "plant-huahui-47", "plant-huahui-48", "plant-huahui-49", "plant-huahui-50", "plant-huahui-51", "plant-huahui-52", "plant-huahui-53", "plant-huahui-54"], "juancao": ["plant-juancao-01", "plant-juancao-02", "plant-juancao-03", "plant-juancao-04", "plant-juancao-05", "plant-juancao-06", "plant-juancao-07", "plant-juancao-08", "plant-juancao-09", "plant-juancao-10"], "chanzhi": ["plant-chanzhi-01", "plant-chanzhi-02", "plant-chanzhi-03", "plant-chanzhi-04", "plant-chanzhi-05", "plant-chanzhi-06", "plant-chanzhi-07", "plant-chanzhi-08", "plant-chanzhi-09", "plant-chanzhi-10", "plant-chanzhi-11", "plant-chanzhi-12", "plant-chanzhi-13", "plant-chanzhi-14", "plant-chanzhi-15", "plant-chanzhi-16", "plant-chanzhi-17", "plant-chanzhi-18", "plant-chanzhi-19", "plant-chanzhi-20", "plant-chanzhi-21", "plant-chanzhi-22", "plant-chanzhi-23", "plant-chanzhi-24", "plant-chanzhi-25", "plant-chanzhi-26", "plant-chanzhi-27", "plant-chanzhi-28", "plant-chanzhi-29", "plant-chanzhi-30", "plant-chanzhi-31"]};
+  D.groups.plant = [
+    { key: 'mudan', name: '牡丹纹', motif: 'peony', count: 80 },
+    { key: 'juancao', name: '卷草纹', motif: 'scroll', count: 10 },
+    { key: 'chanzhi', name: '缠枝纹', motif: 'peony', count: 31 }
+  ];
+  Object.keys(plantSourceGroups).forEach((key) => {
+    const group = D.groups.plant.find((g) => g.key === key);
+    plantSourceGroups[key].forEach((id, index) => {
+      const p = patterns.find((item) => item.id === id);
+      if (!p) return;
+      if (key === 'mudan' && (p.group === 'lianhua' || p.group === 'juhua')) {
+        // Correct old flower names in visible text along with their classification.
+        const rename = (text) => text.replace(/莲花|菊花|莲瓣|菊瓣|团菊|莲纹|菊纹/g,
+          (word) => ({ '莲花': '牡丹', '菊花': '牡丹', '莲瓣': '牡丹花瓣',
+            '菊瓣': '牡丹花瓣', '团菊': '团牡丹', '莲纹': '牡丹纹', '菊纹': '牡丹纹' }[word]));
+        ['title', 'meaning', 'form', 'context', 'sample'].forEach((field) => { p[field] = rename(p[field]); });
+        p.themes = p.themes.map(rename);
+        p.meta = Object.assign({}, p.meta, { name: rename(p.meta.name) });
+      }
+      p.group = key;
+      p.groupName = group.name;
+      p.motif = group.motif;
+      p.no = String(index + 1).padStart(2, '0');
+      p.listName = group.name + p.no;
+    });
+  });
   D.patterns = patterns;
   D.byId = (id) => D.patterns.filter((p) => p.id === id)[0];
   D.siblings = (p) => D.patterns.filter((x) => x.group === p.group && x.id !== p.id);
@@ -453,6 +1024,6 @@
   D.watchList = [
     { id: 'plant-mudan-01', label: '牡丹纹', status: '5 条更新' },
     { id: 'plant-juancao-01', label: '卷草纹', status: '暂无更新' },
-    { id: 'plant-lianhua-01', label: '莲花纹', status: '2 条更新' }
+    { id: 'plant-lianhua-01', label: '牡丹纹', status: '2 条更新' }
   ];
 })();

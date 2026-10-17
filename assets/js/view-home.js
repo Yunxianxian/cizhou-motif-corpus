@@ -33,7 +33,8 @@
       { id: 'glaze', cls: '' }
     ].map((c, i) =>
       '<a class="craft-cell ' + c.cls + '" data-nav="#/craft/' + c.id + '" data-reveal data-delay="' + (i * 70) + '"' +
-      ' aria-label="' + U.esc(D.craftById(c.id).name) + '">' + CZ.Art.craft(c.id, c.id) + '</a>').join('');
+      ' aria-label="' + U.esc(D.craftById(c.id).name) + '">' + CZ.Art.craft(c.id, c.id) +
+      '<span class="craft-cell__label">' + U.esc(D.craftById(c.id).name) + CZ.icon('next', { size: 12 }) + '</span></a>').join('');
 
     const exh = D.exhibitions.filter((e) => e.status !== 'past').slice(0, 3).map((e, i) =>
       '<a class="exhcard" data-nav="#/exhibition/' + e.id + '" data-reveal data-delay="' + (i * 70) + '">' +
@@ -57,7 +58,11 @@
       '<section class="hero" id="hero">' +
       '<div class="hero__viewport"><div class="hero__track">' + slides + '</div></div>' +
       '<div class="hero__meta">' +
+      '<span class="hero__eyebrow">CIZHOU · COLLECTION</span>' +
+      '<div class="hero__copy">' +
       '<p class="hero__caption" id="heroCap">' + U.esc(D.hero[0].title) + '</p>' +
+      '<p class="hero__sub" id="heroSub">' + U.esc(D.hero[0].sub) + '</p>' +
+      '</div>' +
       '<div class="hero__dots">' + dots + '</div>' +
       '</div></section>' +
 
@@ -70,6 +75,7 @@
       '<span class="sec-head__more">全部工艺' + CZ.icon('next', { size: 14 }) + '</span></a>' +
       '<div class="craft-grid">' + craftCells + '</div>' +
       '</section>' +
+      CZ.applications.homeSection() +
 
       '<section class="exh">' +
       '<a class="sec-head sec-head--link" data-nav="#/exhibitions" data-reveal>' +
@@ -101,19 +107,30 @@
     const hero = U.qs('#hero', pageEl);
     const track = U.qs('.hero__track', pageEl);
     const caption = U.qs('#heroCap', pageEl);
+    const subtitle = U.qs('#heroSub', pageEl);
+    const copy = U.qs('.hero__copy', pageEl);
     const hometop = U.qs('#hometop', pageEl);
     const dots = U.qsa('.hero__dot', pageEl);
     const D = CZ.DATA;
     let index = 0, timer = null, dragging = false, startX = 0, dx = 0, w = 1;
+    let copyAnimation = null;
 
     function goTo(i, animate) {
-      index = (i + D.hero.length) % D.hero.length;
-      track.style.transition = animate === false ? 'none' : 'transform .52s cubic-bezier(.32,.72,0,1)';
+      const next = (i + D.hero.length) % D.hero.length;
+      const changed = next !== index;
+      index = next;
+      const motion = animate !== false && !U.reduceMotion();
+      track.style.transition = motion ? 'transform .52s cubic-bezier(.32,.72,0,1)' : 'none';
       track.style.transform = 'translateX(' + (-index * 100) + '%)';
-      caption.textContent = D.hero[index].title;
-      caption.classList.remove('is-swap');
-      void caption.offsetWidth;
-      caption.classList.add('is-swap');
+      if (changed) {
+        if (copyAnimation) copyAnimation.cancel();
+        caption.textContent = D.hero[index].title;
+        subtitle.textContent = D.hero[index].sub;
+        copyAnimation = motion && copy.animate ? copy.animate([
+          { opacity: 0, transform: 'translateY(6px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], { duration: 400, easing: 'cubic-bezier(.22,.61,.36,1)' }) : null;
+      }
       dots.forEach((d, k) => d.classList.toggle('is-on', k === index));
     }
     function autoplay() {

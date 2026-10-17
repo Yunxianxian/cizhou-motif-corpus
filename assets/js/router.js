@@ -7,6 +7,8 @@
 
   const ROUTES = [
     { path: 'home', view: 'home', tab: 'corpus' },
+    { path: 'applications', view: 'applications', tab: 'corpus' },
+    { path: 'applications/:id', view: 'applicationDetail', tab: 'corpus' },
     { path: 'list/:cat', view: 'list', tab: 'corpus' },
     { path: 'detail/:id', view: 'detail', tab: 'corpus' },
     { path: 'craft', view: 'craft', tab: 'corpus' },
@@ -16,6 +18,8 @@
     { path: 'exhibition/:id', view: 'exhibition', tab: null },
     { path: 'upload', view: 'upload', tab: 'upload' },
     { path: 'profile', view: 'profile', tab: 'me' },
+    { path: 'report', view: 'report', tab: 'me' },
+    { path: 'report/:section', view: 'reportSection', tab: 'me' },
     { path: 'follows', view: 'follows', tab: null },
     { path: 'favorites', view: 'favorites', tab: null },
     { path: 'theme', view: 'theme', tab: null },
@@ -52,6 +56,7 @@
   const stack = [];          // hash 顺序
   let active = null;         // 当前 hash
   let animating = false;
+  let finishTransition = null;
   let ignorePop = false;
   let pendingSelf = null;    // 自己触发的 hash 变更（file:// 下 pushState 不可用时用）
   const app = () => document.getElementById('app');
@@ -97,9 +102,24 @@
   }
 
   function transition(prevEntry, nextEntry, mode) {
+    // A reused page must not keep an older transition's fill or completion callback.
+    if (finishTransition) finishTransition();
     const next = nextEntry.el;
     const prev = prevEntry && prevEntry.el;
+    [prev, next].filter(Boolean).forEach(el => {
+      el.getAnimations().forEach(animation => {
+        animation.onfinish = null; animation.oncancel = null; animation.cancel();
+      });
+      el.style.transform = ''; el.style.opacity = ''; el.style.zIndex = '';
+    });
+    pages.forEach(entry => {
+      if (entry.el !== prev && entry.el !== next) { hide(entry.el); entry.el.inert = true; }
+    });
     show(next);
+    next.inert = false;
+    next.style.transform = '';
+    next.style.opacity = '';
+    next.style.pointerEvents = '';
     next.scrollTop = nextEntry.scrollTop || 0;
     if (!prev || prev === next || U.reduceMotion() || mode === 'none') {
       if (prev && prev !== next) hide(prev);
@@ -137,20 +157,35 @@
         [{ transform: 'translateX(0)', opacity: 1 }, { transform: 'translateX(-24%)', opacity: 0.55 }],
         { duration: dur, easing: EASE, fill: 'both' });
     }
+    prev.inert = true;
+    prev.style.pointerEvents = 'none';
+    prev.style.zIndex = mode === 'back' ? '2' : '1';
+    next.style.zIndex = mode === 'back' ? '1' : '2';
     // 收尾必须保证执行：动画事件在后台标签页/省电模式下可能不触发，再加一道定时兜底
     let settled = false;
+    let fallback = null;
     const done = () => {
       if (settled) return;
       settled = true;
+      clearTimeout(fallback);
+      a2.onfinish = null;
+      a2.oncancel = null;
+      if (finishTransition === done) finishTransition = null;
       animating = false;
-      if (prev && prev !== next) { hide(prev); prev.style.opacity = ''; prev.style.transform = ''; }
+      if (prev && prev !== next) {
+        hide(prev); prev.style.opacity = ''; prev.style.transform = '';
+        prev.style.zIndex = ''; prev.style.pointerEvents = ''; prev.inert = true;
+      }
       next.style.transform = '';
       next.style.opacity = '';
+      next.style.zIndex = '';
+      next.inert = false;
       try { a1.cancel(); a2.cancel(); } catch (e) { /* noop */ }
     };
+    finishTransition = done;
     a2.onfinish = done;
     a2.oncancel = done;
-    setTimeout(done, dur + 80);
+    fallback = setTimeout(done, dur + 80);
   }
 
   function render(hash, mode) {
@@ -192,6 +227,7 @@
         return;
       }
       const mode = opts.mode || 'push';
+      if (opts.resetScroll && pages.has(hash)) pages.get(hash).scrollTop = 0;
       pendingSelf = hash;
       clearPendingSoon(hash);
       try {
@@ -241,6 +277,8 @@
         if (ignorePop) { ignorePop = false; return; }
         const h = match(location.hash).hash;
         if (pendingSelf && h === pendingSelf) { pendingSelf = null; return; }
+        // A history traversal can emit both popstate and hashchange.
+        if (h === active) return;
         render(h, 'back');
       };
       window.addEventListener('popstate', onHistory);
@@ -324,12 +362,18 @@
         history.back();
         render(target, 'none');
       } else {
-        curEl.animate([{ transform: 'translateX(' + dx + 'px)' }, { transform: 'translateX(0)' }],
-          { duration: 260, easing: EASE }).onfinish = () => { curEl.style.transform = ''; };
+        const current = curEl, previous = prevEl;
+        const settleCurrent = current.animate([{ transform: 'translateX(' + dx + 'px)' }, { transform: 'translateX(0)' }],
+          { duration: 260, easing: EASE });
+        settleCurrent.onfinish = () => { current.style.transform = ''; settleCurrent.cancel(); };
         if (prevEl) {
-          prevEl.animate([{ transform: 'translateX(' + (-24 + 24 * (dx / w)) + '%)', opacity: 0.6 + 0.4 * (dx / w) },
-            { transform: 'translateX(-24%)', opacity: 0.6 }], { duration: 260, easing: EASE, fill: 'both' })
-            .onfinish = () => { prevEl.style.transform = ''; prevEl.style.opacity = ''; if (prevEl !== pages.get(active).el) hide(prevEl); };
+          const settlePrevious = previous.animate([{ transform: 'translateX(' + (-24 + 24 * (dx / w)) + '%)', opacity: 0.6 + 0.4 * (dx / w) },
+            { transform: 'translateX(-24%)', opacity: 0.6 }], { duration: 260, easing: EASE, fill: 'both' });
+          settlePrevious.onfinish = () => {
+            previous.style.transform = ''; previous.style.opacity = '';
+            settlePrevious.cancel();
+            if (previous !== pages.get(active).el) hide(previous);
+          };
         }
       }
       locked = null;

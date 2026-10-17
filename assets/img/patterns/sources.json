@@ -1,0 +1,849 @@
+[
+  {
+    "id": "plant-mudan-01",
+    "image": "assets/img/patterns/plant-mudan-01.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/01.jpg",
+    "asset_id": "mudan-black-001",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-02",
+    "image": "assets/img/patterns/plant-mudan-02.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/02.jpg",
+    "asset_id": "mudan-black-002",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-03",
+    "image": "assets/img/patterns/plant-mudan-03.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/03.jpg",
+    "asset_id": "mudan-black-003",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-04",
+    "image": "assets/img/patterns/plant-mudan-04.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/06.jpg",
+    "asset_id": "mudan-black-006",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-05",
+    "image": "assets/img/patterns/plant-mudan-05.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/08.jpg",
+    "asset_id": "mudan-black-008",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-06",
+    "image": "assets/img/patterns/plant-mudan-06.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/09.jpg",
+    "asset_id": "mudan-black-009",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-07",
+    "image": "assets/img/patterns/plant-mudan-07.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/03.jpg",
+    "asset_id": "mudan-outline-003",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-08",
+    "image": "assets/img/patterns/plant-mudan-08.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/04.jpg",
+    "asset_id": "mudan-outline-004",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-09",
+    "image": "assets/img/patterns/plant-mudan-09.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/07.jpg",
+    "asset_id": "mudan-outline-007",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-10",
+    "image": "assets/img/patterns/plant-mudan-10.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/08.jpg",
+    "asset_id": "mudan-outline-008",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-11",
+    "image": "assets/img/patterns/plant-mudan-11.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/12.jpg",
+    "asset_id": "mudan-outline-012",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-mudan-12",
+    "image": "assets/img/patterns/plant-mudan-12.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/13.jpg",
+    "asset_id": "mudan-outline-013",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juancao-01",
+    "image": "assets/img/patterns/plant-juancao-01.jpg",
+    "source": "纹样图片/卷草纹训练集/01.jpg",
+    "asset_id": "juancao-line-001",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-02",
+    "image": "assets/img/patterns/plant-juancao-02.jpg",
+    "source": "纹样图片/卷草纹训练集/02.jpg",
+    "asset_id": "juancao-line-002",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-03",
+    "image": "assets/img/patterns/plant-juancao-03.jpg",
+    "source": "纹样图片/卷草纹训练集/03.jpg",
+    "asset_id": "juancao-line-003",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-04",
+    "image": "assets/img/patterns/plant-juancao-04.jpg",
+    "source": "纹样图片/卷草纹训练集/04.jpg",
+    "asset_id": "juancao-line-004",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-05",
+    "image": "assets/img/patterns/plant-juancao-05.jpg",
+    "source": "纹样图片/卷草纹训练集/05.jpg",
+    "asset_id": "juancao-line-005",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-06",
+    "image": "assets/img/patterns/plant-juancao-06.jpg",
+    "source": "纹样图片/卷草纹训练集/06.jpg",
+    "asset_id": "juancao-line-006",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-07",
+    "image": "assets/img/patterns/plant-juancao-07.jpg",
+    "source": "纹样图片/卷草纹训练集/07.jpg",
+    "asset_id": "juancao-line-007",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-08",
+    "image": "assets/img/patterns/plant-juancao-08.jpg",
+    "source": "纹样图片/卷草纹训练集/08.jpg",
+    "asset_id": "juancao-line-008",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-lianhua-01",
+    "image": "assets/img/patterns/plant-lianhua-01.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/19.jpg",
+    "asset_id": "mudan-black-019",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-02",
+    "image": "assets/img/patterns/plant-lianhua-02.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/20.jpg",
+    "asset_id": "mudan-black-020",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-03",
+    "image": "assets/img/patterns/plant-lianhua-03.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/24.jpg",
+    "asset_id": "mudan-black-024",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-04",
+    "image": "assets/img/patterns/plant-lianhua-04.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/30.jpg",
+    "asset_id": "mudan-black-030",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-05",
+    "image": "assets/img/patterns/plant-lianhua-05.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/33.jpg",
+    "asset_id": "mudan-black-033",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-06",
+    "image": "assets/img/patterns/plant-lianhua-06.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/38.jpg",
+    "asset_id": "mudan-black-038",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-07",
+    "image": "assets/img/patterns/plant-lianhua-07.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/39.jpg",
+    "asset_id": "mudan-black-039",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-lianhua-08",
+    "image": "assets/img/patterns/plant-lianhua-08.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/40.jpg",
+    "asset_id": "mudan-black-040",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juhua-01",
+    "image": "assets/img/patterns/plant-juhua-01.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/16.jpg",
+    "asset_id": "mudan-outline-016",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juhua-02",
+    "image": "assets/img/patterns/plant-juhua-02.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/20.jpg",
+    "asset_id": "mudan-outline-020",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juhua-03",
+    "image": "assets/img/patterns/plant-juhua-03.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/21.jpg",
+    "asset_id": "mudan-outline-021",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juhua-04",
+    "image": "assets/img/patterns/plant-juhua-04.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/28.jpg",
+    "asset_id": "mudan-outline-028",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juhua-05",
+    "image": "assets/img/patterns/plant-juhua-05.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/45.jpg",
+    "asset_id": "mudan-outline-029",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-juhua-06",
+    "image": "assets/img/patterns/plant-juhua-06.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/46.jpg",
+    "asset_id": "mudan-outline-030",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-chanzhi-01",
+    "image": "assets/img/patterns/plant-chanzhi-01.jpg",
+    "source": "纹样图片/缠枝纹训练集/01.png",
+    "asset_id": "chanzhi-photo-001",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-02",
+    "image": "assets/img/patterns/plant-chanzhi-02.jpg",
+    "source": "纹样图片/缠枝纹训练集/02.png",
+    "asset_id": "chanzhi-photo-002",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-03",
+    "image": "assets/img/patterns/plant-chanzhi-03.jpg",
+    "source": "纹样图片/缠枝纹训练集/03.png",
+    "asset_id": "chanzhi-photo-003",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-04",
+    "image": "assets/img/patterns/plant-chanzhi-04.jpg",
+    "source": "纹样图片/缠枝纹训练集/04.png",
+    "asset_id": "chanzhi-photo-004",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-05",
+    "image": "assets/img/patterns/plant-chanzhi-05.jpg",
+    "source": "纹样图片/缠枝纹训练集/05.png",
+    "asset_id": "chanzhi-photo-005",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-06",
+    "image": "assets/img/patterns/plant-chanzhi-06.jpg",
+    "source": "纹样图片/缠枝纹训练集/06.png",
+    "asset_id": "chanzhi-photo-006",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-07",
+    "image": "assets/img/patterns/plant-chanzhi-07.jpg",
+    "source": "纹样图片/缠枝纹训练集/07.png",
+    "asset_id": "chanzhi-photo-007",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-08",
+    "image": "assets/img/patterns/plant-chanzhi-08.jpg",
+    "source": "纹样图片/缠枝纹训练集/08.png",
+    "asset_id": "chanzhi-photo-008",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-09",
+    "image": "assets/img/patterns/plant-chanzhi-09.jpg",
+    "source": "纹样图片/缠枝纹训练集/09.png",
+    "asset_id": "chanzhi-photo-009",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-10",
+    "image": "assets/img/patterns/plant-chanzhi-10.jpg",
+    "source": "纹样图片/缠枝纹训练集/10.png",
+    "asset_id": "chanzhi-photo-010",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-11",
+    "image": "assets/img/patterns/plant-chanzhi-11.jpg",
+    "source": "纹样图片/缠枝纹训练集/11.png",
+    "asset_id": "chanzhi-photo-011",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-12",
+    "image": "assets/img/patterns/plant-chanzhi-12.jpg",
+    "source": "纹样图片/缠枝纹训练集/12.png",
+    "asset_id": "chanzhi-photo-012",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-13",
+    "image": "assets/img/patterns/plant-chanzhi-13.jpg",
+    "source": "纹样图片/缠枝纹训练集/13.png",
+    "asset_id": "chanzhi-photo-013",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-14",
+    "image": "assets/img/patterns/plant-chanzhi-14.jpg",
+    "source": "纹样图片/缠枝纹训练集/14.png",
+    "asset_id": "chanzhi-photo-014",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-15",
+    "image": "assets/img/patterns/plant-chanzhi-15.jpg",
+    "source": "纹样图片/缠枝纹训练集/15.png",
+    "asset_id": "chanzhi-photo-015",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-16",
+    "image": "assets/img/patterns/plant-chanzhi-16.jpg",
+    "source": "纹样图片/缠枝纹训练集/16.png",
+    "asset_id": "chanzhi-photo-016",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-17",
+    "image": "assets/img/patterns/plant-chanzhi-17.jpg",
+    "source": "纹样图片/缠枝纹训练集/17.png",
+    "asset_id": "chanzhi-photo-017",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-18",
+    "image": "assets/img/patterns/plant-chanzhi-18.jpg",
+    "source": "纹样图片/缠枝纹训练集/18.png",
+    "asset_id": "chanzhi-photo-018",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-19",
+    "image": "assets/img/patterns/plant-chanzhi-19.jpg",
+    "source": "纹样图片/缠枝纹训练集/19.png",
+    "asset_id": "chanzhi-photo-019",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-20",
+    "image": "assets/img/patterns/plant-chanzhi-20.jpg",
+    "source": "纹样图片/缠枝纹训练集/20.png",
+    "asset_id": "chanzhi-photo-020",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-21",
+    "image": "assets/img/patterns/plant-chanzhi-21.jpg",
+    "source": "纹样图片/缠枝纹训练集/21.png",
+    "asset_id": "chanzhi-photo-021",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-22",
+    "image": "assets/img/patterns/plant-chanzhi-22.jpg",
+    "source": "纹样图片/缠枝纹训练集/22.png",
+    "asset_id": "chanzhi-photo-022",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-23",
+    "image": "assets/img/patterns/plant-chanzhi-23.jpg",
+    "source": "纹样图片/缠枝纹训练集/23.png",
+    "asset_id": "chanzhi-photo-023",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-24",
+    "image": "assets/img/patterns/plant-chanzhi-24.jpg",
+    "source": "纹样图片/缠枝纹训练集/24.png",
+    "asset_id": "chanzhi-photo-024",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-25",
+    "image": "assets/img/patterns/plant-chanzhi-25.jpg",
+    "source": "纹样图片/缠枝纹训练集/25.png",
+    "asset_id": "chanzhi-photo-025",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-26",
+    "image": "assets/img/patterns/plant-chanzhi-26.jpg",
+    "source": "纹样图片/缠枝纹训练集/26.png",
+    "asset_id": "chanzhi-photo-026",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-27",
+    "image": "assets/img/patterns/plant-chanzhi-27.jpg",
+    "source": "纹样图片/缠枝纹训练集/27.png",
+    "asset_id": "chanzhi-photo-027",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-28",
+    "image": "assets/img/patterns/plant-chanzhi-28.jpg",
+    "source": "纹样图片/缠枝纹训练集/28.png",
+    "asset_id": "chanzhi-photo-028",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-29",
+    "image": "assets/img/patterns/plant-chanzhi-29.jpg",
+    "source": "纹样图片/缠枝纹训练集/29.png",
+    "asset_id": "chanzhi-photo-029",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-30",
+    "image": "assets/img/patterns/plant-chanzhi-30.jpg",
+    "source": "纹样图片/缠枝纹训练集/30.png",
+    "asset_id": "chanzhi-photo-030",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-chanzhi-31",
+    "image": "assets/img/patterns/plant-chanzhi-31.jpg",
+    "source": "纹样图片/缠枝纹训练集/31.png",
+    "asset_id": "chanzhi-photo-031",
+    "group": "chanzhi"
+  },
+  {
+    "id": "plant-juancao-09",
+    "image": "assets/img/patterns/plant-juancao-09.jpg",
+    "source": "纹样图片/卷草纹训练集/09.jpg",
+    "asset_id": "juancao-line-009",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-juancao-10",
+    "image": "assets/img/patterns/plant-juancao-10.jpg",
+    "source": "纹样图片/卷草纹训练集/10.jpg",
+    "asset_id": "juancao-line-010",
+    "group": "juancao"
+  },
+  {
+    "id": "plant-huahui-01",
+    "image": "assets/img/patterns/plant-huahui-01.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/04.jpg",
+    "asset_id": "mudan-black-004",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-02",
+    "image": "assets/img/patterns/plant-huahui-02.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/05.jpg",
+    "asset_id": "mudan-black-005",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-03",
+    "image": "assets/img/patterns/plant-huahui-03.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/07.jpg",
+    "asset_id": "mudan-black-007",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-04",
+    "image": "assets/img/patterns/plant-huahui-04.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/10.jpg",
+    "asset_id": "mudan-black-010",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-05",
+    "image": "assets/img/patterns/plant-huahui-05.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/11.jpg",
+    "asset_id": "mudan-black-011",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-06",
+    "image": "assets/img/patterns/plant-huahui-06.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/12.jpg",
+    "asset_id": "mudan-black-012",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-07",
+    "image": "assets/img/patterns/plant-huahui-07.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/13.jpg",
+    "asset_id": "mudan-black-013",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-08",
+    "image": "assets/img/patterns/plant-huahui-08.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/14.jpg",
+    "asset_id": "mudan-black-014",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-09",
+    "image": "assets/img/patterns/plant-huahui-09.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/15.jpg",
+    "asset_id": "mudan-black-015",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-10",
+    "image": "assets/img/patterns/plant-huahui-10.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/16.jpg",
+    "asset_id": "mudan-black-016",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-11",
+    "image": "assets/img/patterns/plant-huahui-11.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/17.jpg",
+    "asset_id": "mudan-black-017",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-12",
+    "image": "assets/img/patterns/plant-huahui-12.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/18.jpg",
+    "asset_id": "mudan-black-018",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-13",
+    "image": "assets/img/patterns/plant-huahui-13.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/21.jpg",
+    "asset_id": "mudan-black-021",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-14",
+    "image": "assets/img/patterns/plant-huahui-14.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/22.jpg",
+    "asset_id": "mudan-black-022",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-15",
+    "image": "assets/img/patterns/plant-huahui-15.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/23.jpg",
+    "asset_id": "mudan-black-023",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-16",
+    "image": "assets/img/patterns/plant-huahui-16.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/25.jpg",
+    "asset_id": "mudan-black-025",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-17",
+    "image": "assets/img/patterns/plant-huahui-17.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/26.jpg",
+    "asset_id": "mudan-black-026",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-18",
+    "image": "assets/img/patterns/plant-huahui-18.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/27.jpg",
+    "asset_id": "mudan-black-027",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-19",
+    "image": "assets/img/patterns/plant-huahui-19.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/28.jpg",
+    "asset_id": "mudan-black-028",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-20",
+    "image": "assets/img/patterns/plant-huahui-20.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/29.jpg",
+    "asset_id": "mudan-black-029",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-21",
+    "image": "assets/img/patterns/plant-huahui-21.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/31.jpg",
+    "asset_id": "mudan-black-031",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-22",
+    "image": "assets/img/patterns/plant-huahui-22.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/32.jpg",
+    "asset_id": "mudan-black-032",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-23",
+    "image": "assets/img/patterns/plant-huahui-23.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/34.jpg",
+    "asset_id": "mudan-black-034",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-24",
+    "image": "assets/img/patterns/plant-huahui-24.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/35.jpg",
+    "asset_id": "mudan-black-035",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-25",
+    "image": "assets/img/patterns/plant-huahui-25.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/36.jpg",
+    "asset_id": "mudan-black-036",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-26",
+    "image": "assets/img/patterns/plant-huahui-26.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/37.jpg",
+    "asset_id": "mudan-black-037",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-27",
+    "image": "assets/img/patterns/plant-huahui-27.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/41.jpg",
+    "asset_id": "mudan-black-041",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-28",
+    "image": "assets/img/patterns/plant-huahui-28.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/42.jpg",
+    "asset_id": "mudan-black-042",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-29",
+    "image": "assets/img/patterns/plant-huahui-29.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/43.jpg",
+    "asset_id": "mudan-black-043",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-30",
+    "image": "assets/img/patterns/plant-huahui-30.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/44.jpg",
+    "asset_id": "mudan-black-044",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-31",
+    "image": "assets/img/patterns/plant-huahui-31.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/49.jpg",
+    "asset_id": "mudan-black-045",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-32",
+    "image": "assets/img/patterns/plant-huahui-32.jpg",
+    "source": "纹样图片/训练集2/mudanwen/10_mudanwen/52.jpg",
+    "asset_id": "mudan-black-046",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-33",
+    "image": "assets/img/patterns/plant-huahui-33.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/01.jpg",
+    "asset_id": "mudan-outline-001",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-34",
+    "image": "assets/img/patterns/plant-huahui-34.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/02.jpg",
+    "asset_id": "mudan-outline-002",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-35",
+    "image": "assets/img/patterns/plant-huahui-35.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/05.jpg",
+    "asset_id": "mudan-outline-005",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-36",
+    "image": "assets/img/patterns/plant-huahui-36.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/06.jpg",
+    "asset_id": "mudan-outline-006",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-37",
+    "image": "assets/img/patterns/plant-huahui-37.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/09.jpg",
+    "asset_id": "mudan-outline-009",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-38",
+    "image": "assets/img/patterns/plant-huahui-38.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/10.jpg",
+    "asset_id": "mudan-outline-010",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-39",
+    "image": "assets/img/patterns/plant-huahui-39.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/11.jpg",
+    "asset_id": "mudan-outline-011",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-40",
+    "image": "assets/img/patterns/plant-huahui-40.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/14.jpg",
+    "asset_id": "mudan-outline-014",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-41",
+    "image": "assets/img/patterns/plant-huahui-41.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/15.jpg",
+    "asset_id": "mudan-outline-015",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-42",
+    "image": "assets/img/patterns/plant-huahui-42.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/17.jpg",
+    "asset_id": "mudan-outline-017",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-43",
+    "image": "assets/img/patterns/plant-huahui-43.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/18.jpg",
+    "asset_id": "mudan-outline-018",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-44",
+    "image": "assets/img/patterns/plant-huahui-44.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/19.jpg",
+    "asset_id": "mudan-outline-019",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-45",
+    "image": "assets/img/patterns/plant-huahui-45.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/22.jpg",
+    "asset_id": "mudan-outline-022",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-46",
+    "image": "assets/img/patterns/plant-huahui-46.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/23.jpg",
+    "asset_id": "mudan-outline-023",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-47",
+    "image": "assets/img/patterns/plant-huahui-47.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/24.jpg",
+    "asset_id": "mudan-outline-024",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-48",
+    "image": "assets/img/patterns/plant-huahui-48.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/25.jpg",
+    "asset_id": "mudan-outline-025",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-49",
+    "image": "assets/img/patterns/plant-huahui-49.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/26.jpg",
+    "asset_id": "mudan-outline-026",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-50",
+    "image": "assets/img/patterns/plant-huahui-50.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/27.jpg",
+    "asset_id": "mudan-outline-027",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-51",
+    "image": "assets/img/patterns/plant-huahui-51.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/47.jpg",
+    "asset_id": "mudan-outline-031",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-52",
+    "image": "assets/img/patterns/plant-huahui-52.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/48.jpg",
+    "asset_id": "mudan-outline-032",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-53",
+    "image": "assets/img/patterns/plant-huahui-53.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/50.jpg",
+    "asset_id": "mudan-outline-033",
+    "group": "mudan"
+  },
+  {
+    "id": "plant-huahui-54",
+    "image": "assets/img/patterns/plant-huahui-54.jpg",
+    "source": "纹样图片/训练集3/white mudanwen/10_white mudanwen/51.jpg",
+    "asset_id": "mudan-outline-034",
+    "group": "mudan"
+  }
+]

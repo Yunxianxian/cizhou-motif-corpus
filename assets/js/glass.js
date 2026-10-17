@@ -7,19 +7,13 @@
 (function () {
   'use strict';
 
-  var SEL = '.pcard,.catcard__media,.datacard,.quicklink,.glass-btn,.chip,.tag,' +
-    '.tabbar,.dfab,.btn,.thumb__art,.sibcard__art,.notice,.themecard,.dropzone,' +
-    '.searchbar__field,.minecell,.uprow,.dlrow,.stepnav__it,.browsecard__media,' +
-    '.watch__art,.craft-cell,.exhcard__media,.dhead__main,.dcard,.uphead,.storage,' +
-    '.chero,.cblock,.watchcard,.minecard,.dquote,.morebtn,.iconbtn';
+  // Keep moving highlights on controls; leave reading and image surfaces quiet.
+  var SEL = '.quicklink,.glass-btn,.chip,.tag,.dfab,.btn,.themecard,' +
+    '.dropzone,.searchbar__field,.stepnav__it,.morebtn,.iconbtn';
 
   var raf = 0;
   var pending = null;
   var lit = null; // 当前点亮的元素
-
-  function dim(el) {
-    if (el && el !== lit) el.classList.remove('is-glow');
-  }
 
   function paint(e) {
     var t = e.target && e.target.closest ? e.target.closest(SEL) : null;
@@ -32,11 +26,12 @@
       }
       t.classList.add('is-glow');
     }
-    if (lit && lit !== t) dim(lit);
+    if (lit && lit !== t) lit.classList.remove('is-glow');
     lit = t;
   }
 
   function onMove(e) {
+    if (document.documentElement.dataset.motion === 'off' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     pending = e;
     if (raf) return;
     raf = requestAnimationFrame(function () {
@@ -51,6 +46,7 @@
 
   // 按下：触摸设备上立即点亮一次（跟随手指位置）
   window.addEventListener('pointerdown', function (e) {
+    if (document.documentElement.dataset.motion === 'off' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     paint(e);
   }, { passive: true });
 
@@ -67,6 +63,10 @@
   document.addEventListener('pointerleave', function () {
     if (lit) { lit.classList.remove('is-glow'); lit = null; }
   });
+
+  window.addEventListener('pointercancel', function () {
+    if (lit) { lit.classList.remove('is-glow'); lit = null; }
+  }, { passive: true });
 
   // 滚动时熄灭，避免光斑悬停在错误位置
   window.addEventListener('scroll', function () {

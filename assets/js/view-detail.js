@@ -31,7 +31,8 @@
       vc.navbar(cat.title) +
 
       '<section class="dhead">' +
-      '<div class="dhead__main" data-morph-dst>' + vs[0].html +
+      '<div class="dhead__main" data-morph-dst role="button" tabindex="0" aria-label="全屏查看纹样图片">' + vs[0].html +
+      '<span class="image-zoom-hint" aria-hidden="true">' + CZ.icon('search', { size: 15 }) + '</span>' +
       '<span class="dhead__badge">' + U.esc(p.styleLabel) + '</span></div>' +
       '<div class="dhead__info">' +
       '<h1 class="dhead__title" data-reveal>' + U.esc(p.title) + '</h1>' +
@@ -89,10 +90,28 @@
     const p = D.byId(ctx.params.id) || D.patterns[0];
     const vs = views(p);
     const main = U.qs('.dhead__main', pageEl);
+    let currentView = 0;
+    const corpusImages = U.qsa('.dcard', pageEl);
+    const gallery = vs.concat(corpusImages.map((card, i) => ({
+      label: i === 0 ? '相关语料' : '语料范本', html: card.innerHTML
+    })));
+    function wireViewer(el, getIndex, label) {
+      el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', label);
+      const open = () => CZ.ui.imageViewer(gallery, getIndex(), p.title);
+      el.addEventListener('click', open);
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+    }
+    wireViewer(main, () => currentView, '全屏查看纹样图片');
+    corpusImages.forEach((card, i) => wireViewer(card, () => vs.length + i,
+      '全屏查看' + (i === 0 ? '相关语料图片' : '语料范本图片')));
 
     U.qsa('.thumb', pageEl).forEach((t) => {
       t.addEventListener('click', () => {
         const i = +t.dataset.v;
+        currentView = i;
         if (t.classList.contains('is-on')) return;
         U.qsa('.thumb', pageEl).forEach((x) => x.classList.remove('is-on'));
         t.classList.add('is-on');

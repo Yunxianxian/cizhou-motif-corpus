@@ -1,0 +1,85 @@
+/* Report entrance and layered reading, using the site's monochrome palette. */
+.report-entry { display: block; margin: 22px 16px 0; padding: 20px; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); color: var(--ink); }
+.report-entry__top { display: flex; gap: 9px; align-items: center; color: var(--muted); font-size: 11px; letter-spacing: .04em; }
+.report-entry__icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; background: var(--paper-2); color: var(--ink-2); }
+.report-entry h2 { font-size: 18px; font-weight: 600; line-height: 1.65; margin: 12px 0 17px; letter-spacing: .02em; }
+.report-entry__bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; color: var(--muted); }
+.report-entry__go { flex: none; display: flex; align-items: center; gap: 4px; color: var(--ink-2); }
+.report-entry:active { background: var(--paper-2); }
+.report-page { background: var(--paper); min-height: 100%; }
+.report-cover { margin: 12px 22px 30px; padding: 25px 0 26px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.report-eyebrow { display: block; color: var(--muted); font-size: 10px; letter-spacing: .2em; }
+.report-cover h1 { font-size: 26px; line-height: 1.6; font-weight: 600; letter-spacing: .025em; margin: 16px 0; overflow-wrap: anywhere; }
+.report-lead { font-size: var(--t-md); line-height: 1.9; color: var(--ink-2); }
+.report-cover__meta { display: flex; flex-wrap: wrap; gap: 7px 16px; margin: 20px 0; font-size: 11px; color: var(--muted); }
+.report-overview, .report-highlights, .report-directory { margin: 0 22px 34px; }
+.report-section-heading { display: flex; gap: 12px; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+.report-section-heading h2, .report-highlights > h2 { font-size: 20px; font-weight: 600; }
+.report-section-heading > span { font-size: 10px; color: var(--muted); }
+.report-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+.report-stats > div { display: grid; gap: 5px; padding: 18px 15px; }
+.report-stats > div:nth-child(odd) { border-right: 1px solid var(--line); }
+.report-stats > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+.report-stats b { font-size: 28px; line-height: 1.2; font-weight: 500; font-variant-numeric: tabular-nums; }
+.report-stats span { font-size: 10px; color: var(--muted); }
+.report-meta { display: grid; gap: 11px; margin: 22px 0; font-size: 12px; }
+.report-meta > div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 12px; }
+.report-meta dt { color: var(--muted); }
+.report-meta dd { color: var(--ink-2); }
+.report-abstract { border-top: 1px solid var(--line); padding-top: 14px; }
+.report-abstract summary { display: flex; justify-content: space-between; font-size: 12px; cursor: pointer; }
+.report-abstract p { font-size: var(--t-md); line-height: 1.95; margin-top: 14px; color: var(--ink-2); }
+.report-highlights > div { display: flex; gap: 14px; margin-top: 20px; }
+.report-highlights > div > span { flex: none; width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; font-size: 11px; }
+.report-highlights h3 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+.report-highlights p { font-size: 12px; line-height: 1.85; color: var(--muted); }
+.report-jump { display: flex; gap: 8px; margin: 0 22px 30px; }
+.report-jump button { flex: 1; min-height: 42px; border-radius: 99px; background: var(--paper-2); font-size: 11px; color: var(--ink-2); }
+.report-row { display: flex; gap: 12px; align-items: center; padding: 18px 0; border-top: 1px solid var(--line-2); }
+.report-row__no { flex: none; align-self: flex-start; color: var(--muted-2); font-size: 12px; font-variant-numeric: tabular-nums; padding-top: 4px; }
+.report-row__text { flex: 1; min-width: 0; display: grid; gap: 6px; }
+.report-row__text b { font-size: 15px; font-weight: 500; line-height: 1.7; }
+.report-row__text > span { font-size: 11px; line-height: 1.85; color: var(--muted); }
+.report-row > svg { flex: none; color: var(--muted); }
+.report-source { margin: 24px 22px 0; color: var(--muted); font-size: 10px; line-height: 1.9; }
+.report-progress { position: sticky; top: calc(var(--sb, 54px) + 56px); height: 2px; z-index: 21; background: var(--line-2); }
+.report-progress span { display: block; height: 100%; background: var(--ink-2); width: 0; }
+.report-reader__header { padding: 24px 22px; }
+.report-reader__header > a { display: block; font-size: 11px; color: var(--muted); margin-bottom: 24px; }
+.report-reader__header h1 { margin: 10px 0 14px; font-size: 25px; font-weight: 600; line-height: 1.6; }
+.report-reader__header p { font-size: var(--t-md); line-height: 1.9; color: var(--muted); }
+.report-expand-tools { display: flex; align-items: center; justify-content: space-between; margin: 0 22px 12px; font-size: 11px; color: var(--muted); }
+.report-expand-tools button { color: var(--ink-2); padding: 10px 0 10px 15px; min-height: 40px; }
+.report-sections { padding: 0 22px; }
+.report-section { border-top: 1px solid var(--line); }
+.report-section > summary { display: flex; gap: 10px; align-items: center; min-height: 68px; padding: 17px 0; cursor: pointer; list-style: none; }
+.report-section summary::-webkit-details-marker, .report-abstract summary::-webkit-details-marker { display: none; }
+.report-section__no { flex: none; color: var(--muted-2); font-size: 10px; }
+.report-section summary h2 { flex: 1; min-width: 0; font-size: 16px; font-weight: 500; line-height: 1.8; }
+.report-section summary > svg { flex: none; color: var(--muted); }
+.report-section[open] > summary > svg, .report-abstract[open] summary > svg { transform: rotate(180deg); }
+.report-body { padding-bottom: 22px; }
+.report-body p { font-size: var(--t-md); line-height: 2; color: var(--ink-2); margin: 0 0 17px; overflow-wrap: anywhere; }
+.report-subsection { margin: 24px 0; }
+.report-subsection h3 { font-size: var(--t-lg); font-weight: 600; line-height: 1.8; margin-bottom: 14px; }
+.report-table { overflow-x: auto; margin: 18px 0; border: 1px solid var(--line); border-radius: 12px; }
+.report-table table { width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.8; }
+.report-table th, .report-table td { min-width: 85px; padding: 12px 10px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+.report-table th { font-weight: 500; background: var(--paper-2); }
+.report-table tr:last-child td { border-bottom: none; }
+.report-figure { margin: 20px 0 24px; }
+.report-figure__images { display: grid; gap: 12px; }
+.report-figure__button { display: block; width: 100%; border-radius: 12px; overflow: hidden; background: #fff; cursor: zoom-in; border: 1px solid var(--line-2); }
+.report-figure__button img { width: 100%; height: auto; display: block; object-fit: contain; }
+.report-figure figcaption { margin-top: 10px; font-size: 10px; line-height: 1.8; color: var(--muted); }
+.report-figure figcaption span { display: block; }
+.report-attachment { display: flex; gap: 12px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line-2); }
+.report-attachment > span { flex: 1; min-width: 0; }
+.report-attachment b, .report-attachment small { display: block; line-height: 1.8; }
+.report-attachment b { font-size: 14px; font-weight: 500; }
+.report-attachment small { color: var(--muted); font-size: 11px; }
+.report-reading-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 18px 22px; border-top: 1px solid var(--line); padding-top: 22px; }
+.report-reading-nav a { display: grid; gap: 7px; }
+.report-reading-nav small { color: var(--muted); font-size: 10px; }
+.report-reading-nav b { font-size: 12px; font-weight: 500; line-height: 1.8; }
+.report-entry:focus-visible, .report-row:focus-visible, .report-section summary:focus-visible, .report-figure__button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

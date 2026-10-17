@@ -1,397 +1,305 @@
-/* ==========================================================================
-   glass.css —— 液态玻璃增强层（在 tokens / base / pages 之后加载）
-   瓷釉般通透的界面：环境光渐变底 + 半透明玻璃面板 + 镜面高光 + 指针追光
-   ========================================================================== */
-
-/* ------------------------------ 页面环境光底 ------------------------------ */
-.page {
-  background: var(--page-bg);
-  background-attachment: local, local, local, local;
+/* Liquid glass — translucent controls above quiet ceramic surfaces. */
+:root {
+  --tabbar-h: 72px;
+  --r-md: 20px;
+  --r-lg: 26px;
+  --r-xl: 32px;
+  --accent: #444444;
+  --liquid-shadow: 0 12px 32px rgba(32, 48, 58, .10), 0 2px 5px rgba(32, 48, 58, .04);
 }
-
-/* 首页 / 我的 的圆角内容板：浅色主题为设计稿的纯白面，其他主题延续环境光 */
-.homesheet,
-.profilesheet {
-  background: var(--page-bg);
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, .35), 0 -18px 38px rgba(20, 16, 12, .1);
+html[data-theme="light"] {
+  --paper: #ffffff;
+  --paper-2: #f5f5f5;
+  --muted: #69777d;
+  --muted-2: #7d898e;
+  --page-bg: #ffffff;
+  --g-bg: rgba(255,255,255,.16);
+  --g-bg-2: rgba(255,255,255,.46);
+  --g-hi: rgba(255,255,255,.94);
+  --g-brd: rgba(255,255,255,.74);
+  --g-sheen: rgba(255,255,255,.3);
+  --g-shadow: var(--liquid-shadow);
+  --g-tab-1: rgba(255,255,255,.14);
+  --g-tab-2: rgba(255,255,255,.045);
+  --g-pill-1: rgba(85,85,85,.085);
+  --g-pill-2: rgba(85,85,85,.045);
+  --g-pill-brd: rgba(255,255,255,.94);
 }
+html[data-theme="dark"] {
+  --accent: #d0d0d0;
+  --muted: #a1abb2;
+  --muted-2: #8e989e;
+  --page-bg: radial-gradient(ellipse at 100% 10%, #203740 0%, transparent 50%), radial-gradient(ellipse at 0% 65%, #292936 0%, transparent 50%), #10181d;
+  --g-bg: rgba(48,54,60,.12);
+  --g-bg-2: rgba(24,30,36,.52);
+  --g-hi: rgba(255,255,255,.26);
+  --g-brd: rgba(222,241,255,.17);
+  --g-sheen: rgba(255,255,255,.12);
+  --g-shadow: 0 12px 28px rgba(0,0,0,.2);
+  --g-tab-1: rgba(68,78,88,.2);
+  --g-tab-2: rgba(24,30,36,.08);
+  --g-pill-1: rgba(255,255,255,.13);
+  --g-pill-2: rgba(255,255,255,.035);
+  --g-pill-brd: rgba(255,255,255,.28);
+}
+html[data-theme="sepia"] {
+  --accent: #444444;
+  --g-bg: rgba(253,248,237,.16);
+  --g-bg-2: rgba(253,248,237,.48);
+  --g-tab-1: rgba(253,248,237,.24);
+  --g-tab-2: rgba(253,248,237,.08);
+  --g-pill-1: rgba(255,255,255,.38);
+  --g-pill-2: rgba(255,255,255,.1);
+  --g-sheen: rgba(255,255,255,.3);
+  --muted: #82735e;
+  --muted-2: #91816b;
+}
+.page { background: var(--page-bg); }
+/* The content sheet lets the photograph softly diffuse through its upper edge. */
+.homesheet, .profilesheet {
+  background: linear-gradient(160deg, var(--g-bg-2), var(--g-bg));
+  border: 1px solid var(--g-brd);
+  border-bottom: 0;
+  border-radius: 32px 32px 0 0;
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 -10px 30px rgba(15,30,38,.08);
+  -webkit-backdrop-filter: blur(28px) saturate(1.35);
+  backdrop-filter: blur(28px) saturate(1.35);
+}
+.homesheet { margin-top: -34px; padding-top: 24px; }
+.profilesheet { margin-top: -32px; }
 html[data-theme="light"] .homesheet,
-html[data-theme="light"] .profilesheet {
-  background: var(--paper);
-  box-shadow: 0 -14px 34px rgba(10, 10, 14, .18);
-}
-html[data-theme="dark"] .homesheet,
-html[data-theme="dark"] .profilesheet {
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, .07), 0 -18px 38px rgba(0, 0, 0, .4);
-}
-
-/* ------------------------- 照片满铺（设计稿样式） ------------------------- */
-/* 分类卡 / 我常看的纹样：照片去内边距、cover 裁切铺满 */
-.catcard__media { padding: 0; }
+html[data-theme="light"] .profilesheet { background: #ffffff; }
+/* Hero: immersive photography with restrained, floating typography. */
+.hero { height: 372px; margin-top: calc(-1 * (var(--sb, 54px) + 64px)); }
+.hero__viewport { inset: -1px; }
+.screen:has(.page--active[data-view="home"]) { background: #201e1c; }
+.hometop__in { padding: 0 22px; height: 64px; }
+.hometop__slogan { font-size: 11px; letter-spacing: .16em; max-width: 120px; }
+.hometop__title { font-size: 18px; letter-spacing: .12em; }
+.hometop .glass-btn { width: 44px; height: 44px; }
+.hero__veil { background: linear-gradient(180deg, rgba(4,15,20,.36), transparent 40%, rgba(4,15,20,.67)); }
+.hero__meta { bottom: 60px; padding: 0 25px; }
+.hero__eyebrow { display: block; font-size: 10px; font-weight: 500; letter-spacing: .26em; opacity: .8; margin-bottom: 10px; }
+.hero__caption { font-family: var(--font-sans); font-size: 27px; font-weight: 600; letter-spacing: .04em; line-height: 1.35; }
+.hero__sub { margin-top: 8px; font-size: 12px; letter-spacing: .12em; opacity: .83; }
+.hero__dots { display: inline-flex; width: fit-content; align-items: center; min-height: 24px; padding: 0 10px; margin-top: 17px; gap: 7px; border-radius: 99px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero__dot { position: relative; width: 5px; height: 5px; }
+.hero__dot::after { content: ''; position: absolute; inset: -9px -3px; }
+.hero__dot.is-on { width: 18px; }
+/* Categories follow the section layout: plain heading, subtitle, then image. */
+.catrow { gap: 12px; padding: 0 18px 12px; }
+.catcard { position: relative; flex: 0 0 61%; display: grid; gap: 14px; }
+.catcard__media { aspect-ratio: 4 / 3; padding: 0; border-radius: 22px; background: var(--paper-2); }
 .catcard__media .art { width: 100%; height: 100%; object-fit: cover; }
-.watch__art { padding: 0; }
-.watch__art .art { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-/* 列表卡 / 详情中替换为照片的纹样：铺满而非留白 */
+.catcard__media svg.art { padding: 12px; }
+.catcard__tx { color: var(--ink); }
+.catcard__tx h3 { font-size: 20px; letter-spacing: .02em; }
+.catcard__tx p { margin-top: 5px; font-size: 11px; color: var(--muted); }
+.craft { margin-top: 22px; }
+.sec-head__tx h2 { letter-spacing: .02em; font-size: 20px; }
+.sec-head__tx p { font-size: 11px; margin-top: 5px; }
+.sec-head__more { font-size: 11px; color: var(--accent); }
+.craft-grid { height: 226px; gap: 10px; }
+.craft-cell { border-radius: 22px; }
+.craft-cell__label { position: absolute; bottom: 10px; left: 10px; display: flex; gap: 6px; align-items: center; padding: 7px 11px; font-size: 11px; color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 99px; background: rgba(21,26,30,.14); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+/* Content surfaces: lower blur, generous radii, thin light-catching edges. */
+.pcard, .datacard, .watchcard, .minecard, .acc, .cblock, .notice,
+.uphead, .storage, .chero, .dcard, .pagebox .lrows, .dquote {
+  background: var(--g-bg);
+  border: 1px solid var(--g-brd);
+  box-shadow: inset 0 1px 0 var(--g-hi), var(--g-shadow);
+}
+.pcard { border-radius: 21px; }
 .pcard__media { padding: 0; }
-.pcard__media .art { width: 100%; height: 100%; object-fit: cover; }
+.pcard__media .art { object-fit: cover; }
 .pcard__media svg.art { padding: 14px; }
-.dhead__main img.art--photo { object-fit: cover; }
-.prow__media img.art--photo, .lrow__art img.art--photo, .hrow__art img.art--photo,
-.sibcard__art img.art--photo, .thumb__art img.art--photo { object-fit: cover; }
-/* 矢量占位图的回退内边距 */
-.catcard__media svg.art { padding: 10px; }
+.pcard__media img.art--motif,
+.dhead__main img.art--motif,
+.thumb__art img.art--motif,
+.sibcard__art img.art--motif { object-fit: contain; background: #fff; }
+.pcard__foot { padding: 11px 10px; }
+.pcard__name { font-weight: 500; }
+.watch__art, .catcard__media { overflow: hidden; }
+.watch__art { padding: 0; }
+.watch__art .art { object-fit: cover; border-radius: inherit; }
 .watch__art svg.art { padding: 10px; }
-
-/* ------------------------------- 玻璃配方 ------------------------------- */
-/* 厚玻璃（主要面板）：半透明 + 景深模糊 + 顶部镜面高光 + 折射描边 */
-.pcard,
-.datacard,
-.watchcard,
-.minecard,
-.acc,
-.cblock,
-.notice,
-.uphead,
-.storage,
-.chero,
-.dhead__main,
-.dcard,
-.catcard__media,
-.browsecard__media,
-.abouthero__mark,
-.pagebox .lrows,
-.dquote {
-  background: var(--g-bg);
-  backdrop-filter: blur(18px) saturate(1.6);
-  -webkit-backdrop-filter: blur(18px) saturate(1.6);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), var(--g-shadow);
-}
-
-/* 薄玻璃（小型控件）：通透但不叠加模糊，保证性能 */
-.quicklink,
-.stepnav__it,
-.uprow,
-.dlrow,
-.chip,
-.tag,
-.morebtn,
-.btn--ghost,
-.lrow__ic,
-.dlrow__ic,
-.notice__ic,
-.dropzone__ic,
-.siterow__pin,
-.minecell,
-.thumb__art,
-.sibcard__art,
-.watch__art,
-.prow__media,
-.lrow__art,
-.hrow__art,
-.sample span,
-.pick__art,
-.sheet__ic,
-.sheet__cancel,
-.field input,
-.field textarea,
-.taginput,
-.dropzone,
-.seg,
-.iconbtn,
-.upstep span,
-.dhead__badge,
-.stepcard__no,
-.status--soon,
-.switch {
+.dhead__main { border: 1px solid var(--g-brd); box-shadow: inset 0 1px 0 var(--g-hi), var(--g-shadow); overflow: hidden; }
+.dhead__main img.art--photo { object-fit: contain; }
+.dquote { border-radius: 20px; }
+.quicklink, .stepnav__it, .chip, .tag, .morebtn, .btn--ghost, .minecell,
+.field input, .field textarea, .taginput, .dropzone, .seg, .iconbtn, .qgrid__ic {
   background: var(--g-bg);
   border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 14px rgba(60, 45, 30, .05);
+  box-shadow: inset 0 1px 0 var(--g-hi), 0 3px 8px rgba(30,50,60,.035);
 }
-
-html[data-theme="dark"] .quicklink,
-html[data-theme="dark"] .stepnav__it,
-html[data-theme="dark"] .uprow,
-html[data-theme="dark"] .dlrow,
-html[data-theme="dark"] .chip,
-html[data-theme="dark"] .tag,
-html[data-theme="dark"] .morebtn,
-html[data-theme="dark"] .btn--ghost,
-html[data-theme="dark"] .lrow__ic,
-html[data-theme="dark"] .dlrow__ic,
-html[data-theme="dark"] .notice__ic,
-html[data-theme="dark"] .dropzone__ic,
-html[data-theme="dark"] .siterow__pin,
-html[data-theme="dark"] .minecell,
-html[data-theme="dark"] .thumb__art,
-html[data-theme="dark"] .sibcard__art,
-html[data-theme="dark"] .watch__art,
-html[data-theme="dark"] .prow__media,
-html[data-theme="dark"] .lrow__art,
-html[data-theme="dark"] .hrow__art,
-html[data-theme="dark"] .sample span,
-html[data-theme="dark"] .pick__art,
-html[data-theme="dark"] .sheet__ic,
-html[data-theme="dark"] .sheet__cancel,
-html[data-theme="dark"] .field input,
-html[data-theme="dark"] .field textarea,
-html[data-theme="dark"] .taginput,
-html[data-theme="dark"] .dropzone,
-html[data-theme="dark"] .seg,
-html[data-theme="dark"] .iconbtn,
-html[data-theme="dark"] .upstep span,
-html[data-theme="dark"] .dhead__badge,
-html[data-theme="dark"] .stepcard__no,
-html[data-theme="dark"] .status--soon,
-html[data-theme="dark"] .switch {
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 14px rgba(0, 0, 0, .28);
-}
-
-/* 行内列表行：悬浮在玻璃底板上的层次 */
+.qgrid__ic { border-radius: 16px; color: var(--accent); }
+.qgrid { padding: 4px 10px 18px; }
+.qgrid__item { gap: 8px; }
 .pagebox .lrows .lrow { background: transparent; border-bottom-color: var(--line-2); }
-.pagebox .lrows .lrow.is-press { background: rgba(255, 255, 255, .28); }
-html[data-theme="dark"] .pagebox .lrows .lrow.is-press { background: rgba(255, 255, 255, .06); }
-
-.prow.is-press, .hrow.is-press, .lrow.is-press, .exhrow-card.is-press { background: rgba(255, 255, 255, .3); }
-html[data-theme="dark"] .prow.is-press,
-html[data-theme="dark"] .hrow.is-press,
-html[data-theme="dark"] .lrow.is-press,
-html[data-theme="dark"] .exhrow-card.is-press { background: rgba(255, 255, 255, .05); }
-
-.qgrid__item.is-press { background: rgba(255, 255, 255, .34); }
-html[data-theme="dark"] .qgrid__item.is-press { background: rgba(255, 255, 255, .06); }
-.acc__hd.is-press, .notice.is-press { background: rgba(255, 255, 255, .3); }
-html[data-theme="dark"] .acc__hd.is-press,
-html[data-theme="dark"] .notice.is-press { background: rgba(255, 255, 255, .05); }
-
-/* 照片 / 场景类媒体：折射描边 + 柔和投影，图像本身铺满 */
-.craft-cell,
-.exhcard__media,
-.exhrow-card__media,
-.stepcard__media,
-.uprow__art {
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), var(--g-shadow);
-}
-
-/* -------------------------------- 导航玻璃 -------------------------------- */
-.navbar.is-stuck,
-.chipsbar.is-stuck,
-.searchbar,
-.hometop.is-stuck .hometop__bg {
+.navbar.is-stuck, .chipsbar.is-stuck, .hometop.is-stuck .hometop__bg, .searchbar {
   background: var(--g-bg-2);
-  backdrop-filter: var(--g-blur);
-  -webkit-backdrop-filter: var(--g-blur);
+  -webkit-backdrop-filter: blur(12px) saturate(1.25);
+  backdrop-filter: blur(12px) saturate(1.25);
 }
-.navbar.is-stuck { box-shadow: inset 0 -1px 0 var(--line), inset 0 1px 0 var(--g-hi); }
-
-.searchbar__field {
-  background: var(--g-bg);
+.searchbar__field { background: var(--g-bg); border: 1px solid var(--g-brd); box-shadow: inset 0 1px 0 var(--g-hi); border-radius: 22px; }
+/* A single lens material for floating controls and overlays. */
+.glass-btn, .tabbar, .dfab, .sheet, .dialog {
+  background: linear-gradient(145deg, var(--g-tab-1), var(--g-tab-2));
   border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), inset 0 2px 6px rgba(60, 45, 30, .05);
-  backdrop-filter: blur(12px) saturate(1.5);
-  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  box-shadow: inset 0 1.5px 1px var(--g-hi), inset 0 -1px 1px rgba(110,139,150,.12), inset 1px 0 1px rgba(255,255,255,.25), 0 8px 24px rgba(20,30,35,.1), 0 2px 5px rgba(20,30,35,.04);
+  -webkit-backdrop-filter: blur(6px) saturate(1.3);
+  backdrop-filter: blur(6px) saturate(1.3);
 }
-
-/* 圆形工具按钮：镜头玻璃 */
-.glass-btn {
-  background: var(--g-bg-2);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 16px rgba(60, 45, 30, .1);
-  backdrop-filter: blur(16px) saturate(1.7);
-  -webkit-backdrop-filter: blur(16px) saturate(1.7);
+.glass-btn { width: 44px; height: 44px; }
+.hometop.is-stuck .glass-btn--glass { background: linear-gradient(145deg, var(--g-tab-1), var(--g-tab-2)); border-color: var(--g-brd); }
+.glass-btn--dark, .hometop:not(.is-stuck) .glass-btn--glass { color: #fff; background: linear-gradient(140deg, rgba(255,255,255,.14), rgba(255,255,255,.025)); border-color: rgba(255,255,255,.48); }
+.tabbar { left: 22px; right: 22px; bottom: 22px; height: var(--tabbar-h); padding-bottom: 0; border-radius: 40px; }
+.tabbar__in { padding: 0 4px; }
+.tabbar__pill { top: 7px; height: calc(100% - 14px); border-radius: 32px; background: linear-gradient(150deg, var(--g-pill-1), var(--g-pill-2)); border: 1px solid var(--g-pill-brd); box-shadow: inset 0 1px 1px var(--g-hi), 0 3px 10px rgba(30,60,70,.1); transition: left .45s var(--e-liquid), width .45s var(--e-liquid); }
+.tab { color: var(--ink-2); }
+.tab.is-on { color: #737373; }
+html[data-theme="dark"] .tab.is-on { color: #bcbcbc; }
+.tab.is-on .tab__ic { transform: translateY(-1px) scale(1.06); }
+.tab__tx { font-size: 10px; font-weight: 500; }
+.tabbar .tab__tx { text-shadow: 0 1px 1px rgba(255,255,255,.85); }
+.tabbar .tab__ic svg { filter: drop-shadow(0 1px .75px rgba(255,255,255,.85)); }
+html[data-theme="dark"] .tabbar .tab__tx { text-shadow: 0 1px 1px rgba(0,0,0,.65); }
+html[data-theme="dark"] .tabbar .tab__ic svg { filter: drop-shadow(0 1px .75px rgba(0,0,0,.65)); }
+/* Moving lens: a clipped duplicate refracts the content beneath the glass. */
+.tab__content { display: grid; justify-items: center; align-content: center; }
+.tabbar__pill { overflow: hidden; pointer-events: none; transition: none; z-index: 3; }
+.tabbar { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.tabbar.is-lens-held { cursor: grabbing; }
+.tabbar.is-lens-held .tabbar__pill { box-shadow: inset 0 2px 2px var(--g-hi), inset 0 -1px 1px rgba(100,100,100,.12), 0 7px 18px rgba(30,40,45,.18); }
+.tabbar.has-lens .tabbar__in {
+  -webkit-mask-image: linear-gradient(90deg, #000 0 var(--lens-left), transparent var(--lens-left) var(--lens-right), #000 var(--lens-right) 100%);
+  mask-image: linear-gradient(90deg, #000 0 var(--lens-left), transparent var(--lens-left) var(--lens-right), #000 var(--lens-right) 100%);
 }
-html[data-theme="dark"] .glass-btn { box-shadow: inset 0 1px 0 var(--g-hi), 0 6px 16px rgba(0, 0, 0, .4); }
-
-/* ------------------------------ 底部导航胶囊 ------------------------------ */
-/* iOS 液态玻璃：高透 + 强模糊 + 顶部镜面高光，内容清晰透出 */
+.tabbar__lens-track { position: absolute; left: 0; top: -8px; height: var(--tabbar-h); display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 4px; }
+.tab--reflection { color: #737373; }
+html[data-theme="dark"] .tab--reflection { color: #bcbcbc; }
+.tab--reflection .tab__ic { color: #303030; }
+html[data-theme="dark"] .tab--reflection .tab__ic { color: #a8a8a8; }
+.tab--reflection .tab__content { will-change: transform; }
+.tabbar__pill::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 1.5px 1px rgba(255,255,255,.95), inset 1px 0 2px rgba(255,255,255,.65), inset -1px 0 2px rgba(255,255,255,.55); background: linear-gradient(110deg, rgba(255,255,255,.06), transparent 24%, transparent 76%, rgba(255,255,255,.08)); opacity: calc(.45 + var(--lens-energy, 0) * .55); }
+/* Clear lens: a fine dark outer rim, a bright inner rim, and an unclouded center. */
+.glass-btn, .tabbar, .dfab, .pavatar, .puser__friends {
+  -webkit-backdrop-filter: blur(2px) saturate(1.12);
+  backdrop-filter: blur(2px) saturate(1.12);
+  border-color: rgba(255,255,255,.62);
+  box-shadow: 0 0 0 .5px rgba(60,65,70,.18), inset 0 1.5px 1px rgba(255,255,255,.8),
+    inset 0 -1px 1px rgba(255,255,255,.35), 0 5px 15px rgba(25,30,35,.07);
+}
+.tabbar__pill { border-color: rgba(255,255,255,.42); box-shadow: inset 0 1px 1px rgba(255,255,255,.55); }
+.tabbar.is-lens-held .tabbar__pill {
+  background: linear-gradient(150deg, rgba(255,255,255,.16), rgba(255,255,255,.02));
+  border-color: rgba(60,65,70,.3);
+  box-shadow: 0 0 0 .5px rgba(60,65,70,.14), inset 0 2px 1px rgba(255,255,255,.9),
+    inset 0 -1px 1px rgba(255,255,255,.65), 0 5px 12px rgba(25,30,35,.1);
+}
+.has-refraction:not(.sheet):not(.dialog) {
+  backdrop-filter: var(--glass-refraction) blur(.6px) saturate(1.12);
+}
+.sheet.has-refraction, .dialog.has-refraction {
+  backdrop-filter: var(--glass-refraction) blur(12px) saturate(1.12);
+}
+/* The base is a constant clear glass layer, independent of the moving lens. */
 .tabbar {
-  background: linear-gradient(180deg, var(--g-tab-1) 0%, var(--g-tab-2) 100%);
-  border: 1px solid var(--g-brd);
-  box-shadow:
-    inset 0 1.5px 0 var(--g-hi),
-    inset 0 -0.5px 0 rgba(0, 0, 0, .05),
-    0 18px 44px rgba(20, 20, 26, .14),
-    0 3px 10px rgba(20, 20, 26, .07);
-  backdrop-filter: blur(28px) saturate(1.9);
-  -webkit-backdrop-filter: blur(28px) saturate(1.9);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-color: rgba(255,255,255,.38);
+  box-shadow: 0 0 0 .5px rgba(35,40,45,.1), inset 0 1px 1px rgba(255,255,255,.65),
+    inset 0 -1px 1px rgba(255,255,255,.22), 0 4px 14px rgba(25,30,35,.08);
 }
-html[data-theme="dark"] .tabbar {
-  box-shadow:
-    inset 0 1.5px 0 var(--g-hi),
-    0 18px 44px rgba(0, 0, 0, .5),
-    0 3px 10px rgba(0, 0, 0, .35);
+.tabbar__material {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(170deg, rgba(255,255,255,.17), rgba(255,255,255,.07));
+  -webkit-backdrop-filter: blur(1.8px) saturate(1.12);
+  backdrop-filter: blur(1.8px) saturate(1.12);
 }
-
-/* 选中胶囊：液态玻璃浮珠（圆角与导航栏同心：30 - 12 = 18px，见 base.css） */
-.tabbar__pill {
-  background: linear-gradient(180deg, var(--g-pill-1) 0%, var(--g-pill-2) 100%);
-  border: 1px solid var(--g-pill-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 12px rgba(20, 20, 26, .1);
-  backdrop-filter: blur(10px) saturate(1.5);
-  -webkit-backdrop-filter: blur(10px) saturate(1.5);
+.tabbar .tabbar__material.has-refraction {
+  backdrop-filter: var(--glass-refraction) blur(1.8px) saturate(1.12);
 }
-html[data-theme="dark"] .tabbar__pill { box-shadow: inset 0 1px 0 var(--g-hi), 0 4px 12px rgba(0, 0, 0, .4); }
-
-.tab { transition: color var(--d-2) var(--e-out); }
-.tab.is-on .tab__ic { transform: translateY(-1.5px) scale(1.08); transition-timing-function: var(--e-liquid); }
-
-/* --------------------------------- 按钮 --------------------------------- */
-.btn--ink {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(0, 0, 0, .18), var(--sh-1);
+.tabbar .tabbar__pill {
+  background: rgba(220,220,220,.4);
+  border-color: rgba(255,255,255,.6);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.5), 0 1px 3px rgba(0,0,0,.04);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
-.btn--ink.is-press { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 2px 6px rgba(20, 16, 12, .12); }
-
-.chip.is-on,
-.tag--on {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 4px 12px rgba(20, 16, 12, .14);
+.tabbar.has-active-lens .tabbar__pill {
+  background: rgba(255,255,255,calc(.08 + .36 * var(--lens-frost, 1)));
+  -webkit-backdrop-filter: blur(calc(.6px + 13.4px * var(--lens-frost, 1))) saturate(1.12);
+  backdrop-filter: blur(calc(.6px + 13.4px * var(--lens-frost, 1))) saturate(1.12);
 }
-
-.seg { padding: 3px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.seg__it.is-on {
-  background: var(--g-bg-2);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 3px 10px rgba(60, 45, 30, .1);
+.tabbar.has-active-lens .tabbar__pill.has-refraction {
+  backdrop-filter: var(--glass-refraction) blur(calc(.6px + 13.4px * var(--lens-frost, 1))) saturate(1.12);
 }
-
-.switch.is-on { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), inset 0 2px 6px rgba(0, 0, 0, .22); border-color: transparent; }
-
-/* --------------------------------- 浮层 --------------------------------- */
-.sheet {
-  background: var(--g-bg-2);
-  backdrop-filter: var(--g-blur-2);
-  -webkit-backdrop-filter: var(--g-blur-2);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1.5px 0 var(--g-hi), var(--sh-3);
-}
-.dialog {
-  background: var(--g-bg-2);
-  backdrop-filter: var(--g-blur-2);
-  -webkit-backdrop-filter: var(--g-blur-2);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1.5px 0 var(--g-hi), var(--sh-3);
-}
-.toast {
-  background: rgba(26, 24, 22, .8);
-  border: 1px solid rgba(255, 255, 255, .16);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), var(--sh-2);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-}
-.sheet-backdrop { backdrop-filter: blur(6px) saturate(1.2); -webkit-backdrop-filter: blur(6px) saturate(1.2); }
-
-/* 详情收藏浮标：水滴玻璃 */
-.dfab {
-  background: var(--g-bg-2);
-  border: 1px solid var(--g-brd);
-  box-shadow: inset 0 1.5px 0 var(--g-hi), 0 10px 24px rgba(50, 38, 26, .16);
-  backdrop-filter: blur(18px) saturate(1.7);
-  -webkit-backdrop-filter: blur(18px) saturate(1.7);
-}
-.dfab.is-on { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 10px 24px rgba(20, 16, 12, .3); }
-
-/* ------------------------------ 指针追光镀层 ------------------------------ */
-/* 仅为「静态定位」的元素补相对定位；绝对/粘性定位的元素（tabbar/dfab/sheet/dialog）
-   本身即可作为 ::before 的定位上下文，切勿覆盖其 position */
+html[data-theme="dark"] .tabbar__material { background: linear-gradient(170deg, rgba(70,75,80,.19), rgba(30,32,36,.1)); }
+html[data-theme="dark"] .tabbar .tabbar__pill { background: rgba(255,255,255,.14); }
+html[data-theme="dark"] .tabbar.has-active-lens .tabbar__pill { background: rgba(100,105,110,calc(.08 + .28 * var(--lens-frost, 1))); }
+html[data-theme="sepia"] .tabbar__material { background: linear-gradient(170deg, rgba(253,248,237,.19), rgba(253,248,237,.08)); }
+html[data-theme="dark"] .tabbar.is-lens-held .tabbar__pill { border-color: rgba(255,255,255,.5); }
+.sheet, .dialog { background: var(--g-bg-2); -webkit-backdrop-filter: blur(18px) saturate(1.25); backdrop-filter: blur(18px) saturate(1.25); }
+.sheet-backdrop { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.sheet__cancel { background: var(--g-bg); }
+.toast { background: rgba(24,28,32,.62); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.25); }
+.dfab { bottom: calc(var(--tabbar-h) + 38px); }
+.dfab.is-on { background: linear-gradient(145deg, var(--g-pill-1), var(--g-pill-2)); color: var(--ink); border-color: var(--g-pill-brd); }
+.dfab.is-on svg { fill: currentColor; }
+.chip.is-on, .tag--on { background: var(--accent); color: #fff; border-color: transparent; }
+html[data-theme="dark"] .chip.is-on, html[data-theme="dark"] .tag--on { color: #14232b; }
+.seg { padding: 4px; }
+.seg__it.is-on { background: var(--g-bg-2); box-shadow: inset 0 1px 0 var(--g-hi), 0 2px 7px rgba(20,40,50,.1); }
+.pavatar, .puser__friends { background: rgba(255,255,255,.07); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); border: 1px solid rgba(255,255,255,.5); box-shadow: inset 0 1px 0 rgba(255,255,255,.5); }
+.themecard.is-on { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); }
+.field input:focus, .field textarea:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+/* Specular highlights track the finger without distorting content. */
 .pcard, .catcard__media, .datacard, .quicklink, .glass-btn, .chip, .tag,
-.btn, .thumb__art, .sibcard__art, .notice, .themecard,
-.dropzone, .searchbar__field, .minecell, .uprow, .dlrow,
-.stepnav__it, .browsecard__media, .watch__art, .craft-cell, .exhcard__media,
-.dhead__main, .dcard, .uphead, .storage, .chero, .cblock, .watchcard,
-.minecard, .dquote, .morebtn, .seg, .iconbtn {
-  position: relative;
+.btn, .notice, .themecard, .dropzone, .searchbar__field, .minecell,
+.dcard, .uphead, .storage, .chero, .cblock, .watchcard, .minecard, .morebtn, .iconbtn { position: relative; }
+.glass-btn::before, .tabbar::before, .dfab::before, .quicklink::before,
+.pcard::before, .datacard::before, .minecell::before, .dcard::before,
+.chip::before, .notice::before, .searchbar__field::before {
+  content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit;
+  pointer-events: none; opacity: .16;
+  background: radial-gradient(ellipse at var(--mx, 15%) var(--my, 0%), var(--g-sheen), transparent 65%);
+  transition: opacity .3s ease;
 }
-.pcard::before, .catcard__media::before, .datacard::before, .quicklink::before,
-.glass-btn::before, .chip::before, .tag::before, .tabbar::before, .dfab::before,
-.btn::before, .thumb__art::before, .sibcard__art::before, .notice::before,
-.themecard::before, .dropzone::before, .searchbar__field::before,
-.minecell::before, .uprow::before, .dlrow::before, .stepnav__it::before,
-.browsecard__media::before, .watch__art::before, .craft-cell::before,
-.exhcard__media::before, .dhead__main::before, .dcard::before, .uphead::before,
-.storage::before, .chero::before, .cblock::before, .watchcard::before,
-.minecard::before, .dquote::before, .morebtn::before, .iconbtn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(150px circle at var(--mx, 50%) var(--my, -60%), var(--g-sheen), transparent 72%);
-  opacity: 0;
-  transition: opacity .38s var(--e-out);
-  pointer-events: none;
-  z-index: 1;
+.is-glow::before { opacity: .46; }
+/* The stationary base never lights up or changes material on touch. */
+.tabbar::before, .tabbar.is-glow::before { background: none; opacity: 0; transition: none; }
+.tabbar__in { z-index: 2; }
+.tabbar__pill { z-index: 3; }
+.stage { background: radial-gradient(ellipse at 20% 0, #e2eeef, transparent 65%), radial-gradient(ellipse at 90% 100%, #d9dde9, transparent 55%), #edf0f2; }
+.stage::after { opacity: .25; }
+@media (hover:hover) {
+  .pcard:hover, .quicklink:hover { transform: translateY(-3px); }
+  .catcard:hover .art { transform: scale(1.035); }
 }
-.is-glow::before { opacity: 1; }
-/* 保证内容压在追光层之下不受影响（追光层仅作釉面光泽） */
-.tabbar__in, .seg__it, .sheet > *, .dialog > * { position: relative; z-index: 2; }
-.tabbar__pill { z-index: 1; }
-.tab { z-index: 2; }
-
-/* ------------------------------ 动效细节升级 ------------------------------ */
-/* 悬停浮起（桌面鼠标） */
-@media (hover: hover) {
-  .pcard:hover { transform: translateY(-3px); box-shadow: inset 0 1px 0 var(--g-hi), 0 18px 40px rgba(80, 60, 40, .14); }
-  .quicklink:hover, .stepnav__it:hover, .minecell:hover { transform: translateY(-2px); }
-  .catcard__media:hover .art,
-  .sibcard__art:hover .art,
-  .watch__art:hover .art,
-  .browsecard__media:hover .art { transform: scale(1.05); }
-  .glass-btn:hover { box-shadow: inset 0 1px 0 var(--g-hi), 0 10px 22px rgba(60, 45, 30, .14); }
+.catcard .art { transition: transform .6s var(--e-out); }
+@media (max-width:619px) {
+  .tabbar { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
 }
-.pcard, .quicklink, .stepnav__it, .minecell {
-  transition: transform var(--d-2) var(--e-out), box-shadow var(--d-2) var(--e-out), background var(--d-1);
+@media (max-width:359px) {
+  .hometop__slogan { font-size: 10px; max-width: 100px; }
+  .hero__caption { font-size: 24px; }
+  .tabbar { left: 14px; right: 14px; }
 }
-.catcard__media .art, .sibcard__art .art, .watch__art .art,
-.browsecard__media .art, .pcard__media .art {
-  transition: transform .6s var(--e-out);
+/* Readable fallbacks for browsers without backdrop filtering or reduced transparency. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .tabbar, .glass-btn, .sheet, .dialog, .dfab, .homesheet, .profilesheet { background: var(--paper); }
+  .hometop:not(.is-stuck) .glass-btn--glass, .glass-btn--dark { background: #35444b; }
 }
-.pcard.is-press { box-shadow: inset 0 1px 0 var(--g-hi); }
-
-/* 主题卡片选中态：墨色描边 + 玻璃光晕 */
-.themecard.is-on {
-  border-color: var(--ink);
-  box-shadow: inset 0 1px 0 var(--g-hi), 0 0 0 3px color-mix(in srgb, var(--ink) 12%, transparent), var(--g-shadow);
+@media (prefers-reduced-transparency: reduce) {
+  .tabbar, .glass-btn, .sheet, .dialog, .dfab, .homesheet, .profilesheet { background: var(--paper); }
+  .glass-btn--dark, .hometop:not(.is-stuck) .glass-btn--glass { background: #35444b; }
+  .has-refraction:not(.sheet):not(.dialog), .sheet.has-refraction, .dialog.has-refraction { backdrop-filter: none; }
+  .tabbar .tabbar__material { background: var(--paper); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .tabbar.has-active-lens .tabbar__pill { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
-
-/* 输入框聚焦：墨色玻璃环 */
-.field input:focus, .field textarea:focus {
-  box-shadow: inset 0 1px 0 var(--g-hi), inset 0 0 0 1.5px var(--ink), 0 0 0 4px color-mix(in srgb, var(--ink) 8%, transparent);
-}
-
-/* 首页 hero 圆点：点亮时带微光 */
-.hero__dot.is-on { box-shadow: 0 0 8px rgba(255, 255, 255, .8); }
-
-/* 展览状态徽章 / 图版徽章的玻璃质感 */
-.dhead__badge, .stepcard__no {
-  backdrop-filter: blur(10px) saturate(1.5);
-  -webkit-backdrop-filter: blur(10px) saturate(1.5);
-}
-
-/* 头像与好友胶囊：更强的镜头感 */
-.pavatar {
-  background: rgba(255, 255, 255, .22);
-  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .5), 0 8px 20px rgba(0, 0, 0, .2);
-  backdrop-filter: blur(12px) saturate(1.4);
-  -webkit-backdrop-filter: blur(12px) saturate(1.4);
-}
-.puser__friends {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-}
-
-/* 章节标题字距呼吸感 */
-.sec-head__tx h2 { letter-spacing: .05em; }
-
-/* 桌面展示舞台：陶瓷暖调氛围 */
-.stage {
-  background:
-    radial-gradient(1100px 640px at 16% -8%, rgba(238, 200, 150, .35) 0%, transparent 60%),
-    radial-gradient(900px 700px at 96% 100%, rgba(180, 168, 150, .4) 0%, transparent 62%),
-    radial-gradient(700px 500px at 60% 40%, rgba(214, 196, 172, .25) 0%, transparent 70%),
-    #e9e5de;
-}
-
-/* 降低动态效果时：关闭追光淡入过渡 */
 @media (prefers-reduced-motion: reduce) {
-  .is-glow::before { transition: none; }
+  .tabbar__pill, .catcard .art, .is-glow::before { transition: none; }
 }
+html[data-motion="off"] .tabbar__pill, html[data-motion="off"] .catcard .art { transition: none; }

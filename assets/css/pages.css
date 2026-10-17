@@ -94,15 +94,10 @@ img.art--scene, img.art--hero { object-fit: cover; }
   color: #fff;
 }
 .hero__caption {
-  font-family: var(--font-kai);
+  font-family: var(--font-sans);
   font-size: var(--t-lg);
   letter-spacing: .12em;
   text-shadow: 0 2px 14px rgba(0, 0, 0, .55);
-}
-.hero__caption.is-swap { animation: capIn .62s var(--e-out); }
-@keyframes capIn {
-  from { opacity: 0; transform: translateY(9px); letter-spacing: .3em; }
-  to { opacity: 1; transform: none; letter-spacing: .12em; }
 }
 .hero__dots { display: flex; gap: 6px; margin-top: 13px; }
 .hero__dot {
@@ -984,6 +979,7 @@ img.art--scene, img.art--hero { object-fit: cover; }
   background: var(--card);
   overflow: hidden;
 }
+.sample span > img.art { border-radius: max(6px, calc(var(--r-md) - 10px)); }
 .sample b { font-size: var(--t-xs); font-weight: 400; color: var(--muted); }
 
 .upblock { margin-top: 22px; }
