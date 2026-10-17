@@ -873,3 +873,19 @@ html[data-hero="1"] .statusbar { color: #fff; }
   :root { --sb: calc(env(safe-area-inset-top, 0px) + 10px); }
   .tabbar { bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* --------------------- 横向横幅：鼠标可拖拽滚动（见 hscroll.js） --------------------- */
+/* 触屏仍走浏览器原生惯性滚动，这里只给鼠标提供可拖动的光标提示与拖动中的态 */
+.is-hscroll { cursor: grab; }
+/* 禁用标签 / 图片的原生拖拽，否则一拖就变成「拖出一张图」，滚动会中断。
+   -webkit-user-drag 覆盖 Chrome / Edge / Safari，dragstart 兜住 Firefox。 */
+.is-hscroll, .is-hscroll * {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.is-hscroll.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none; /* 拖动时关掉吸附，避免逐格卡顿 */
+}
+.is-hscroll.is-dragging * { cursor: grabbing; }

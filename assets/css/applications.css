@@ -1,14 +1,18 @@
 .application-home { margin-top: 26px; }
-.application-strip { display: flex; gap: 12px; padding: 0 18px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; scrollbar-width: none; }
+/* 不做 scroll-snap：拖动 / 滑动时自由滚动，不要一格一格地吸附 */
+.application-strip { display: flex; gap: 12px; padding: 0 18px 6px; overflow-x: auto; scrollbar-width: none; }
 .application-strip::-webkit-scrollbar { display: none; }
 .application-card { display: block; border: 1px solid var(--line-2); border-radius: 24px; overflow: hidden; background: var(--paper); }
-.application-card--compact { flex: 0 0 80%; scroll-snap-align: start; }
+.application-card--compact { flex: 0 0 80%; }
 .application-card__image { height: 210px; overflow: hidden; background: #f3f2ef; }
 .application-card__image img { width: 100%; height: 100%; object-fit: contain; }
 .application-card__image--brand img { object-fit: cover; }
 .application-card__image--social { padding: 14px; background: #eceee8; }
 .application-card__image--social img { object-fit: cover; object-position: center top; border-radius: 12px; }
 .application-card__image--platform { padding: 14px; background: #242424; }
+/* 与 --social 保持一致：填满内框并给圆角。
+   原先用 contain 会在内框上下留 12px 空白，圆角加在透明留白上等于没有视觉效果。 */
+.application-card__image--platform img { object-fit: cover; border-radius: 12px; }
 .application-card__copy { padding: 18px; }
 .application-card__copy > span, .application-detail__heading > span { color: var(--muted); font-size: 11px; letter-spacing: .1em; }
 .application-card__copy h3 { font-size: 18px; line-height: 1.5; margin-top: 6px; }
