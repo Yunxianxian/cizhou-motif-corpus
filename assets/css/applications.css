@@ -1,5 +1,5 @@
 .application-home { margin-top: 26px; }
-.application-strip { display: flex; gap: 12px; padding: 0 18px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.application-strip { display: flex; gap: 12px; padding: 0 18px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; scrollbar-width: none; }
 .application-strip::-webkit-scrollbar { display: none; }
 .application-card { display: block; border: 1px solid var(--line-2); border-radius: 24px; overflow: hidden; background: var(--paper); }
 .application-card--compact { flex: 0 0 80%; scroll-snap-align: start; }
